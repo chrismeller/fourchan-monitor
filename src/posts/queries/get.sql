@@ -1,0 +1,1 @@
+select * from posts where board = ? and thread = ? and number = ?;
