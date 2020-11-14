@@ -1,15 +1,17 @@
 import { Controller, Get, Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { ok } from 'assert';
+import * as fs from 'fs';
 import { Observable } from 'rxjs';
 import { AppService } from './app.service';
+import { ConfigService } from './config/config.service';
 import { SQLiteProvider } from './database/sqlite.provider';
 
 @Controller('app')
 export class AppController {
   constructor(private readonly appService: AppService, 
     @Inject('BOARDS_SERVICE') private readonly client: ClientProxy,
-    private readonly sqlite: SQLiteProvider) {}
+    private readonly sqlite: SQLiteProvider,
+    private readonly configService: ConfigService) {}
 
   async onApplicationBootstrap() {
     await this.client.connect();
@@ -28,7 +30,12 @@ export class AppController {
     const threadsByBoard = db.prepare('select board, count(*) from threads group by board').all();
     const postsByBoard = db.prepare('select board, count(*) from posts group by board').all();
 
+    const sqliteLocation = this.configService.get('SQLITE_LOCATION');
+    const dbStat = fs.statSync(sqliteLocation);
+    const dbSize = dbStat.size;
+
     return {
+      size: dbSize,
       pragma: {
         'journal_mode': journalMode,
         'synchronous': synchronous,

@@ -7,9 +7,10 @@ import { ThreadsModule } from './threads/threads.module';
 import { PostsModule } from './posts/posts.module';
 import { DatabaseModule } from './database/database.module';
 import { LoggerModule } from './logger/logger.module';
+import { ConfigModule } from './config/config.module';
 
 @Module({
-  imports: [BoardsModule, ThreadsModule, PostsModule, DatabaseModule, LoggerModule,
+  imports: [BoardsModule, ThreadsModule, PostsModule, DatabaseModule, LoggerModule, ConfigModule,
     ClientsModule.register([
       { name: 'BOARDS_SERVICE', transport: Transport.NATS,
           options: {
