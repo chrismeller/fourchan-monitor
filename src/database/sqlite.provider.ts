@@ -18,6 +18,7 @@ export class SQLiteProvider implements OnModuleInit {
     
     this.db = new SQLite(this.configService.get('SQLITE_LOCATION'));
 
+    this.db.exec('pragma journal_mode = WAL');
     this.db.exec('pragma synchronous = NORMAL');
     this.db.exec('pragma temp_store= memory');
     this.db.exec('pragma mmap_size = 30000000000');
