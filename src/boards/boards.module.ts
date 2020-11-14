@@ -1,9 +1,10 @@
 import { Module, HttpModule } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ConfigModule } from 'src/config/config.module';
 import { BoardsController } from './boards.controller';
 
 @Module({
-    imports: [ HttpModule, 
+    imports: [ HttpModule, ConfigModule,
         ClientsModule.register([
             { name: 'THREADS_SERVICE', transport: Transport.NATS,
                 options: {
