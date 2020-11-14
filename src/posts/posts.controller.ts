@@ -71,6 +71,7 @@ export class PostsController {
         }
 
         if (rawPosts != null) {
+            const posts: Array<PostEntity> = new Array();
             for (const rawPost of rawPosts.posts) {
                 const post: PostEntity = {
                     Board: threadToRun.board,
@@ -89,9 +90,11 @@ export class PostsController {
                     FileWidth: rawPost.w,
                 };
 
-                console.log(`Putting post ${post.Board}: ${post.Number}`);
-                await this.postsService.put(post);
+                posts.push(post);
             }
+
+            console.log(`Putting batch of ${posts.length} posts for ${threadToRun.board}: ${threadToRun.no}`);
+            await this.postsService.putBatch(posts);
         }
     }
 }

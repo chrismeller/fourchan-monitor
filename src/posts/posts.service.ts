@@ -64,4 +64,12 @@ export class PostsService {
 			post.UrlSlug,
 		);
 	}
+
+	public putBatch(posts: Array<PostEntity>): void {
+		const t = this.db.transaction((posts) => {
+			for (const post of posts) this.put(post);
+		});
+
+		t(posts);
+	}
 }
