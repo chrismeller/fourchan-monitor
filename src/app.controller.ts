@@ -1,6 +1,7 @@
 import { Controller, Get, Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import * as fs from 'fs';
+import * as filesize from 'filesize';
 import { Observable } from 'rxjs';
 import { AppService } from './app.service';
 import { ConfigService } from './config/config.service';
@@ -32,7 +33,7 @@ export class AppController {
 
     const sqliteLocation = this.configService.get('SQLITE_LOCATION');
     const dbStat = fs.statSync(sqliteLocation);
-    const dbSize = dbStat.size;
+    const dbSize = filesize(dbStat.size)
 
     return {
       size: dbSize,
