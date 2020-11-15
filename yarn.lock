@@ -928,13 +928,6 @@
     "@types/webpack-sources" "*"
     "source-map" "^0.6.0"
 
-"@types/winston@^2.4.4":
-  "integrity" "sha512-BVGCztsypW8EYwJ+Hq+QNYiT/MUyCif0ouBH+flrY66O5W+KIXAMML6E/0fJpm7VjIzgangahl5S03bJJQGrZw=="
-  "resolved" "https://registry.npmjs.org/@types/winston/-/winston-2.4.4.tgz"
-  "version" "2.4.4"
-  dependencies:
-    "winston" "*"
-
 "@types/yargs-parser@*":
   "integrity" "sha512-FA/BWv8t8ZWJ+gEOnLLd8ygxH/2UFbAvgEonyfN6yWGLKc7zVjbpl2Y4CTjid9h2RfgPP6SEt6uHwEOply00yw=="
   "resolved" "https://registry.npmjs.org/@types/yargs-parser/-/yargs-parser-15.0.0.tgz"
@@ -6773,7 +6766,7 @@
     "readable-stream" "^2.3.7"
     "triple-beam" "^1.2.0"
 
-"winston@*", "winston@^3.3.3":
+"winston@^3.3.3":
   "integrity" "sha512-oEXTISQnC8VlSAKf1KYSSd7J6IWuRPQqDdo8eoRNaYKLvwSb5+79Z3Yi1lrl6KDpU6/VWaxpakDAtb1oQ4n9aw=="
   "resolved" "https://registry.npmjs.org/winston/-/winston-3.3.3.tgz"
   "version" "3.3.3"
