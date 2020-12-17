@@ -26,10 +26,25 @@ export class AppController {
     const mmapSize = db.pragma('mmap_size');
     const tempStore = db.pragma('temp_store');
 
-    const threadsCount = db.prepare('select count(*) from threads').pluck().get();
-    const postsCount = db.prepare('select count(*) from posts').pluck().get();
-    const threadsByBoard = db.prepare('select board, count(*) from threads group by board').all();
-    const postsByBoard = db.prepare('select board, count(*) from posts group by board').all();
+    const threadsCountDb = db.prepare('select count(*) as count from threads').pluck().get();
+    const postsCountDb = db.prepare('select count(*) as count from posts').pluck().get();
+    const threadsByBoardDb = db.prepare('select board, count(*) as count from threads group by board').all();
+    const postsByBoardDb = db.prepare('select board, count(*) as count from posts group by board').all();
+
+    const formatter = new Intl.NumberFormat('en');
+
+    const threadsCount = formatter.format(threadsCountDb);
+    const postsCount = formatter.format(postsCountDb);
+
+    let threadsByBoard = {};
+    for(var board of threadsByBoardDb) {
+      threadsByBoard[board.board] = formatter.format(board.count);
+    }
+
+    let postsByBoard = {};
+    for(var board of postsByBoardDb) {
+      postsByBoard[board.board] = formatter.format(board.count);
+    }
 
     const sqliteLocation = this.configService.get('SQLITE_LOCATION');
     const dbStat = fs.statSync(sqliteLocation);
