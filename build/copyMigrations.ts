@@ -3,7 +3,7 @@ import * as path from 'path';
 
 for (const moduleDirectory of fs.readdirSync('./src/', { withFileTypes: true })) {
     // for some reason this seems not to work on Windows
-    if (moduleDirectory.isDirectory) {
+    if (moduleDirectory.isDirectory()) {
         const moduleMigrationsPath = path.join('./src/', moduleDirectory.name, 'migrations/');
         if (fs.existsSync(moduleMigrationsPath)) {
             for (const migrationFile of fs.readdirSync(moduleMigrationsPath)) {

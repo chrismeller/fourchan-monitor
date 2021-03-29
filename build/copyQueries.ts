@@ -3,7 +3,7 @@ import * as path from 'path';
 
 for (const moduleDirectory of fs.readdirSync('./src/', { withFileTypes: true })) {
     // for some reason this seems not to work on Windows
-    if (moduleDirectory.isDirectory) {
+    if (moduleDirectory.isDirectory()) {
         const moduleQueriesPath = path.join('./src/', moduleDirectory.name, 'queries/');
         if (fs.existsSync(moduleQueriesPath)) {
             for (const queryFile of fs.readdirSync(moduleQueriesPath)) {
