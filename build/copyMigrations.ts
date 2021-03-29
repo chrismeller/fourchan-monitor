@@ -13,7 +13,7 @@ for (const moduleDirectory of fs.readdirSync('./src/', { withFileTypes: true }))
                 console.log(sourceName + ' -> ' + destinationName);
 
                 if (fs.existsSync(path.dirname(destinationName)) === false) {
-                    fs.mkdirSync(path.dirname(destinationName));
+                    fs.mkdirSync(path.dirname(destinationName), { recursive: true, });
                 }
                 fs.copyFileSync(sourceName, destinationName);
             }
