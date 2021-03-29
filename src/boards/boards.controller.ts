@@ -1,6 +1,6 @@
 import { Controller, HttpService, Inject } from '@nestjs/common';
-import { ClientProxy, Ctx, MessagePattern, NatsContext, Payload } from '@nestjs/microservices';
-import { ConfigService } from 'src/config/config.service';
+import { ClientProxy, Ctx, MessagePattern, NatsContext } from '@nestjs/microservices';
+import { ConfigService } from '../config/config.service';
 import { BoardsResponseDto } from './dtos/boards-response.dto';
 
 @Controller('boards')

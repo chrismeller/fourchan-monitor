@@ -1,6 +1,6 @@
 import { Controller, HttpService, Inject } from '@nestjs/common';
 import { ClientProxy, Ctx, MessagePattern, NatsContext, Payload } from '@nestjs/microservices';
-import { GetThreadPosts } from 'src/posts/messages/get-thread-posts.command';
+import { GetThreadPosts } from '../posts/messages/get-thread-posts.command';
 import { ThreadPageDto } from './dtos/thread-page.dto';
 import { ThreadsService } from './threads.service';
 import { ThreadEntity } from './entities/thread.entity';
@@ -31,7 +31,11 @@ export class ThreadsController {
 
 				// we only use existing for the etag, if there is one, so it doesn't get wiped out
 				// otherwise, we can upsert the whole thing and not care - we have the rest of the info
-				const existing = await this.threadsService.get(board, thread.no);
+				const existing = this.threadsService.get(board, thread.no);
+
+				if (existing == null) {
+					continue;
+				}
 
 				// and now the database entry
 				const dbThread: ThreadEntity = {
@@ -39,7 +43,7 @@ export class ThreadsController {
 					Number: thread.no,
 					Meta: {
 						LastModified: thread.last_modified,
-						ETag: existing?.Meta.ETag,
+						ETag: existing.Meta.ETag,
 					},
 				};
 

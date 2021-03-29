@@ -1,9 +1,9 @@
 import { Controller, HttpService } from '@nestjs/common';
-import { MessagePattern, Payload, Ctx, NatsContext } from '@nestjs/microservices';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 import { GetThreadPosts } from './messages/get-thread-posts.command';
 import { PostsService } from './posts.service';
 import { PostEntity } from './entities/post.entity';
-import { Post, PostsWrapper } from './dtos/post.dto';
+import { PostsWrapper } from './dtos/post.dto';
 import { ThreadEntity } from '../threads/entities/thread.entity';
 import { ThreadsService } from '../threads/threads.service';
 
@@ -14,7 +14,7 @@ export class PostsController {
                 private readonly threadsService: ThreadsService) {}
 
     @MessagePattern('posts.get')
-    async getPosts(@Payload() threadToRun: GetThreadPosts, @Ctx() context: NatsContext): Promise<void> {
+    async getPosts(@Payload() threadToRun: GetThreadPosts): Promise<void> {
         console.log(`posts.get started for ${threadToRun.board}: ${threadToRun.no}`, new Date().toISOString());
 
         // we get the existing thread here to make sure that we have the correct headers to use, if we've gotten this thread before
@@ -45,33 +45,10 @@ export class PostsController {
         }
 
         // now we know it either doesn't exist already, or it has been modified - time to update
-        let rawPosts: PostsWrapper = null;
-        try {
-            const responseObservable = this.httpService.get<PostsWrapper>(`https://a.4cdn.org/${threadToRun.board}/thread/${threadToRun.no}.json`);
-            const response = await responseObservable.toPromise();
-
-            // first, create the thread entity
-            const newEntity: ThreadEntity = {
-                Meta: {
-                    LastModified: threadToRun.last_modified,
-                    ETag: response.headers['etag']
-                },
-                Board: threadToRun.board,
-                Number: threadToRun.no,
-            };
-
-            // and time to save it
-            await this.threadsService.upsert(newEntity);
-
-            rawPosts = response.data;
-        }
-        catch (e) {
-            console.error('Unable to get thread at GET request!');
-            return;
-        }
+        const rawPosts = await this.fetchPosts(threadToRun);
 
         if (rawPosts != null) {
-            const posts: Array<PostEntity> = new Array();
+            const posts: Array<PostEntity> = [];
             for (const rawPost of rawPosts.posts) {
                 const post: PostEntity = {
                     Board: threadToRun.board,
@@ -95,6 +72,32 @@ export class PostsController {
 
             console.log(`Putting batch of ${posts.length} posts for ${threadToRun.board}: ${threadToRun.no}`);
             await this.postsService.putBatch(posts);
+        }
+    }
+
+    private async fetchPosts(threadToRun: GetThreadPosts): Promise<PostsWrapper | null> {
+        try {
+            const responseObservable = this.httpService.get<PostsWrapper>(`https://a.4cdn.org/${threadToRun.board}/thread/${threadToRun.no}.json`);
+            const response = await responseObservable.toPromise();
+
+            // first, create the thread entity
+            const newEntity: ThreadEntity = {
+                Meta: {
+                    LastModified: threadToRun.last_modified,
+                    ETag: response.headers['etag']
+                },
+                Board: threadToRun.board,
+                Number: threadToRun.no,
+            };
+
+            // and time to save it
+            await this.threadsService.upsert(newEntity);
+
+            return response.data;
+        }
+        catch (e) {
+            console.error('Unable to get thread at HEAD request!');
+            return null;
         }
     }
 }

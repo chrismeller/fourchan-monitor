@@ -8,7 +8,7 @@ async function bootstrap() {
     transport: Transport.NATS,
     options: {
       url: 'nats://localhost:4222',
-    }
+    },
   });
 
   app.useLogger(await app.resolve('LoggerService'));
