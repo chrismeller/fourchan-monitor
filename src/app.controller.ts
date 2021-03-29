@@ -9,7 +9,7 @@ import { SQLiteProvider } from './database/sqlite.provider';
 
 @Controller('app')
 export class AppController {
-  constructor(private readonly appService: AppService, 
+  constructor(private readonly appService: AppService,
     @Inject('BOARDS_SERVICE') private readonly client: ClientProxy,
     private readonly sqlite: SQLiteProvider,
     private readonly configService: ConfigService) {}
@@ -26,42 +26,42 @@ export class AppController {
     const mmapSize = db.pragma('mmap_size');
     const tempStore = db.pragma('temp_store');
 
-    const threadsCountDb = db.prepare('select count(*) as count from threads').pluck().get();
-    const postsCountDb = db.prepare('select count(*) as count from posts').pluck().get();
-    const threadsByBoardDb = db.prepare('select board, count(*) as count from threads group by board').all();
-    const postsByBoardDb = db.prepare('select board, count(*) as count from posts group by board').all();
+    const threadsCountDb: number = db.prepare('select count(*) as count from threads').pluck().get();
+    const postsCountDb: number = db.prepare('select count(*) as count from posts').pluck().get();
+    const threadsByBoardDb: { board: string, count: number }[] = db.prepare('select board, count(*) as count from threads group by board').all();
+    const postsByBoardDb: { board: string, count: number }[] = db.prepare('select board, count(*) as count from posts group by board').all();
 
     const formatter = new Intl.NumberFormat('en');
 
     const threadsCount = formatter.format(threadsCountDb);
     const postsCount = formatter.format(postsCountDb);
 
-    let threadsByBoard = {};
-    for(var board of threadsByBoardDb) {
+    const threadsByBoard: Record<string, string> = {};
+    for (const board of threadsByBoardDb) {
       threadsByBoard[board.board] = formatter.format(board.count);
     }
 
-    let postsByBoard = {};
-    for(var board of postsByBoardDb) {
+    const postsByBoard: Record<string, string> = {};
+    for (const board of postsByBoardDb) {
       postsByBoard[board.board] = formatter.format(board.count);
     }
 
     const sqliteLocation = this.configService.get('SQLITE_LOCATION');
     const dbStat = fs.statSync(sqliteLocation);
-    const dbSize = filesize(dbStat.size)
+    const dbSize = filesize(dbStat.size);
 
     return {
       size: dbSize,
       pragma: {
-        'journal_mode': journalMode,
-        'synchronous': synchronous,
-        'mmap_size': mmapSize,
-        'temp_store': tempStore,
+        journal_mode: journalMode,
+        synchronous: synchronous,
+        mmap_size: mmapSize,
+        temp_store: tempStore,
       },
-      'num_threads': threadsCount,
-      'num_posts': postsCount,
-      'threads_by_board': threadsByBoard,
-      'posts_by_board': postsByBoard,
+      num_threads: threadsCount,
+      num_posts: postsCount,
+      threads_by_board: threadsByBoard,
+      posts_by_board: postsByBoard,
     };
   }
 
@@ -69,6 +69,6 @@ export class AppController {
   async getHello(): Promise<string> {
     // return this.appService.getHello();
     await this.client.send('boards.get', {}).toPromise();
-    return 'ok'
+    return 'ok';
   }
 }
