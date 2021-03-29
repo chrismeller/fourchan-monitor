@@ -1,35 +1,28 @@
-import { Injectable, Logger, OnModuleInit, Scope } from '@nestjs/common';
-import * as fs from 'fs';
-import * as path from 'path';
+import { Injectable, Logger, /* OnModuleInit, */ Scope } from '@nestjs/common';
 import { ConfigService } from '../config/config.service';
 import * as SQLite from 'better-sqlite3';
 
 @Injectable({ scope: Scope.DEFAULT })
-export class SQLiteProvider implements OnModuleInit {
+export class SQLiteProvider /* implements OnModuleInit */ {
   private readonly logger = new Logger(SQLiteProvider.name);
-  private db: SQLite.Database;
+  private readonly db: SQLite.Database;
 
-  constructor(private readonly configService: ConfigService) {}
-
-  get(): SQLite.Database {
-    if (this.db != null ) {
-      return this.db;
-    }
-    
+  constructor(private readonly configService: ConfigService) {
     this.db = new SQLite(this.configService.get('SQLITE_LOCATION'));
 
     this.db.exec('pragma journal_mode = WAL');
     this.db.exec('pragma synchronous = NORMAL');
     this.db.exec('pragma temp_store= memory');
     this.db.exec('pragma mmap_size = 30000000000');
+  }
 
+  get(): SQLite.Database {
     return this.db;
   }
 
-
-  async onModuleInit() {
+  // async onModuleInit() {
   //   await this.up();
-  }
+  // }
 
   // async up() {
   //   this.logger.debug('Running migrations...');
@@ -82,5 +75,5 @@ export class SQLiteProvider implements OnModuleInit {
   // }
 }
 
-export interface SQLiteDatabase extends SQLite.Database {}
-export interface SQLiteStatement extends SQLite.Statement {}
+export type SQLiteDatabase = SQLite.Database;
+export type SQLiteStatement = SQLite.Statement;
