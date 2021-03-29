@@ -1,13 +1,11 @@
-import { Type } from 'class-transformer';
 
-export class Meta {
-	ETag: string;
+interface Meta {
+	ETag: string | null;
 	LastModified: number;
 }
 
-export class ThreadEntity {
+export interface ThreadEntity {
 	Board: string;
 	Number: number;
-	@Type(() => Meta)
 	Meta: Meta;
 }

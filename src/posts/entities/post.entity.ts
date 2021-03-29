@@ -1,4 +1,4 @@
-export class PostEntity {
+export interface PostEntity {
 	Board: string;
 	Thread: number;
 	// com
@@ -19,7 +19,7 @@ export class PostEntity {
 	// semantic_url
 	UrlSlug: string;
 	// tim
-	FileUploaded: Date;
+	FileUploaded: Date | null;
 	// time
 	CreatedAt: Date;
 	// w
