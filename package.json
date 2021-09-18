@@ -29,7 +29,7 @@
     "better-sqlite3": "^7.1.2",
     "class-transformer": "^0.4.0",
     "dotenv": "^8.2.0",
-    "filesize": "^6.1.0",
+    "filesize": "^6.4.0",
     "nats": "^1.4.12",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
