@@ -28,7 +28,7 @@
     "@nestjs/core": "^7.6.18",
     "@nestjs/platform-express": "^7.6.18",
     "class-transformer": "^0.4.0",
-    "filesize": "^6.4.0",
+    "filesize": "^8.0.3",
     "dotenv": "^8.6.0",
     "nats": "^1.4.12",
     "reflect-metadata": "^0.1.13",
