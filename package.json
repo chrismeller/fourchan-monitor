@@ -30,7 +30,7 @@
     "class-transformer": "^0.4.0",
     "filesize": "^8.0.3",
     "dotenv": "^8.6.0",
-    "nats": "^1.4.12",
+    "nats": "^2.2.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.7",
