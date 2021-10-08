@@ -13,5 +13,10 @@ create table posts (
     posters_name nvarchar(128),
     thread bigint,
     url_slug nvarchar(128),
+    replies int,
+    image_replies int,
+    unique_ips int,
     primary key (board, thread, number)
 );
+
+create index idx_posts_board on posts (board);

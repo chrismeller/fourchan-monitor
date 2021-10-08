@@ -1,11 +1,10 @@
-
 interface Meta {
-	ETag: string | null;
-	LastModified: number;
+  ETag?: string;
+  LastModified: Date;
 }
 
 export interface ThreadEntity {
-	Board: string;
-	Number: number;
-	Meta: Meta;
+  Board: string;
+  Number: number;
+  Meta: Meta;
 }

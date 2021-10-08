@@ -1,32 +1,48 @@
-import { Controller, HttpService, Inject } from '@nestjs/common';
-import { ClientProxy, Ctx, MessagePattern, NatsContext } from '@nestjs/microservices';
-import { ConfigService } from '../config/config.service';
+import { Controller, Inject, Logger } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
+import {
+    ClientProxy,
+    Ctx,
+    EventPattern,
+    NatsContext,
+} from '@nestjs/microservices';
+import { ConfigService } from '@nestjs/config';
 import { BoardsResponseDto } from './dtos/boards-response.dto';
+import { firstValueFrom } from 'rxjs';
 
 @Controller('boards')
 export class BoardsController {
-    constructor(private readonly httpService: HttpService, 
-        @Inject('THREADS_SERVICE') private readonly threadsClient: ClientProxy,
-        private readonly configService: ConfigService) {}
+  private readonly logger = new Logger(BoardsController.name);
 
-    @MessagePattern('boards.get')
-    async getBoards(@Ctx() context: NatsContext): Promise<void> {
-        console.log('boards.get started!', new Date().toISOString());
+  constructor(
+    private readonly httpService: HttpService,
+    @Inject('THREADS_SERVICE') private readonly threadsClient: ClientProxy,
+    private readonly configService: ConfigService,
+  ) {}
 
-        // const response = await this.httpService.get<BoardsResponseDto>('https://a.4cdn.org/boards.json').toPromise();
-    
-        // let boardsToRun: Array<string> = [];
-        // for (const board of response.data.boards) {
-        //     boardsToRun.push(board.board);
-        // }
-    
-        console.log('boards.get completed!', new Date().toISOString());
-    
-        const boardsToRun = this.configService.get('BOARDS');
+  @EventPattern('boards.get')
+  async getBoards(@Ctx() context: NatsContext): Promise<void> {
+    this.logger.debug('boards.get started');
 
-        for (const board of boardsToRun.split(',')) {
-            console.log(`Sending threads.get for ${board}`);
-            await this.threadsClient.send<string>('threads.get', board).toPromise();
-        }
+    // if the list of boards to run is specified, use those, otherwise we pull them all
+    let boardsToRun: string[] = [];
+    if (this.configService.get<string>('BOARDS') != undefined) {
+      boardsToRun = this.configService.get<string>('BOARDS', '').split(',');
     }
+    else {
+      const ob = this.httpService.get<BoardsResponseDto>(
+        'https://a.4cdn.org/boards.json',
+      );
+      const response = await firstValueFrom(ob);
+
+      boardsToRun = response.data.boards.map((board) => board.board);
+
+      this.logger.log(`Got ${boardsToRun.length} boards to run!`);
+    }
+
+    for (const board of boardsToRun) {
+      this.logger.log(`Sending threads.get for board ${board}`);
+      await firstValueFrom(this.threadsClient.emit<string>('threads.get', board));
+    }
+  }
 }

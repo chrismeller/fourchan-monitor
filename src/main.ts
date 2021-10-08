@@ -1,27 +1,22 @@
 import { NestFactory } from '@nestjs/core';
-import { Transport, MicroserviceOptions } from '@nestjs/microservices';
 import { AppModule } from './app.module';
+import { Transport } from '@nestjs/microservices';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const microservice = app.connectMicroservice({
-    transport: Transport.NATS,
-    options: {
-      url: 'nats://localhost:4222',
-    },
-  });
+    const app = await NestFactory.create(AppModule);
 
-  app.useLogger(await app.resolve('LoggerService'));
+    const configSerivce = app.get(ConfigService);
 
-  await app.startAllMicroservicesAsync();
-  await app.listen(3000, () => console.log('Listening on port 3000!'));
+    app.connectMicroservice({
+        transport: Transport.NATS,
+        options: {
+            servers: [configSerivce.get<string>('NATS_URL')],
+        },
+    });
 
-  // const microservices = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
-  //   transport: Transport.NATS,
-  //   options: {
-  //     url: 'nats://localhost:4222',
-  //   },
-  // });
-  // microservices.listen(() => console.log('Microservice is listening.'));
+    await app.init();
+    await app.startAllMicroservices();
+    await app.listen(3000);
 }
 bootstrap();

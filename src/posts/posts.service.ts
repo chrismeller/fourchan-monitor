@@ -1,75 +1,64 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import {
+  SQLiteDatabase,
+  SQLiteProvider,
+  SQLiteStatement,
+} from '../database/sqlite.provider';
 import * as fs from 'fs';
 import * as path from 'path';
-import { serialize, deserialize } from 'class-transformer';
-import { SQLiteProvider, SQLiteDatabase, SQLiteStatement } from '../database/sqlite.provider';
 import { PostEntity } from './entities/post.entity';
 
 @Injectable()
-export class PostsService {
-	private readonly db: SQLiteDatabase;
-	private readonly getStatement: SQLiteStatement;
-	private readonly upsertStatement: SQLiteStatement;
+export class PostsService implements OnModuleInit {
+  private readonly logger = new Logger(PostsService.name);
 
+  private readonly db: SQLiteDatabase;
+  private getStatement!: SQLiteStatement;
+  private upsertStatement!: SQLiteStatement;
 
-	constructor(private readonly sqlite: SQLiteProvider) {
-		this.db = sqlite.get();
+  constructor(sqlite: SQLiteProvider) {
+    this.db = sqlite.get();
+  }
 
-		this.getStatement = this.db.prepare(fs.readFileSync(path.join(__dirname, './queries/get.sql')).toString());
-		this.upsertStatement = this.db.prepare(fs.readFileSync(path.join(__dirname, './queries/upsert.sql')).toString());
-	}
+  onModuleInit(): void {
+    this.getStatement = this.db.prepare(
+      fs.readFileSync(path.join(__dirname, './queries/get.sql'), 'utf-8'),
+    );
+    this.upsertStatement = this.db.prepare(
+      fs.readFileSync(path.join(__dirname, './queries/upsert.sql'), 'utf-8'),
+    );
 
-	public get(board: string, threadNumber: number, postNumber: number): PostEntity {
-		try {
-			const result = this.getStatement.get(board, threadNumber, postNumber);
-			const post: PostEntity = {
-				Board: result.board,
-				Comment: result.comment,
-				CreatedAt: result.created_at,
-				FileExtension: result.file_extension,
-				FileHash: result.file_hash,
-				FileHeight: result.file_height,
-				FileSize: result.file_size,
-				FileUploaded: result.file_uploaded,
-				FileWidth: result.file_width,
-				Filename: result.filename,
-				Number: result.number,
-				PostersName: result.posters_name,
-				Thread: result.thread,
-				UrlSlug: result.url_slug,
-			};
-			return post;
-		}
-		catch (error) {
-			throw error;
-		}
-	}
+    this.logger.debug('Statements prepared.');
+  }
 
-	public put(post: PostEntity): void {
-		// not actually an upsert
-		this.upsertStatement.run(
-			post.Board,
-			post.Comment,
-			post.CreatedAt?.toISOString(),
-			post.FileExtension,
-			post.FileHash,
-			post.FileHeight,
-			post.FileSize,
-			post.FileUploaded?.toISOString(),
-			post.FileWidth,
-			post.Filename,
-			post.Number,
-			post.PostersName,
-			post.Thread,
-			post.UrlSlug,
-		);
-	}
+  public put(post: PostEntity): void {
+    // not actually an upsert, just an insert with no-conflict
+    this.upsertStatement.run({
+      Board: post.Board,
+      Comment: post.Comment,
+      CreatedAt: post.CreatedAt.toUTCString(),
+      FileExtension: post.FileExtension,
+      FileHash: post.FileHash,
+      FileHeight: post.FileHeight,
+      FileSize: post.FileSize,
+      FileUploaded: post.FileUploaded?.toUTCString(),
+      FileWidth: post.FileWidth,
+      Filename: post.Filename,
+      Number: post.Number,
+      PostersName: post.PostersName,
+      Thread: post.Thread,
+      UrlSlug: post.UrlSlug,
+      Replies: post.Replies,
+      ImageReplies: post.ImageReplies,
+      UniqueIps: post.UniqueIps,
+    });
+  }
 
-	public putBatch(posts: Array<PostEntity>): void {
-		const t = this.db.transaction((posts) => {
-			for (const post of posts) this.put(post);
-		});
+  public putBatch(posts: PostEntity[]): void {
+    const t = this.db.transaction((posts) => {
+      for (const post of posts) this.put(post);
+    });
 
-		t(posts);
-	}
+    t(posts);
+  }
 }

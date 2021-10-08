@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '../config/config.module';
-//import { LevelDbProvider } from './leveldb.provider';
 import { SQLiteProvider } from './sqlite.provider';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [ConfigModule],

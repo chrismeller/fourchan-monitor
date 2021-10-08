@@ -1,1 +1,1 @@
-select * from posts where board = ? and thread = ? and number = ?;
+select * from posts where board = @Board and thread = @Thread and number = @Number;

@@ -1,103 +1,75 @@
-import { Controller, HttpService } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
-import { GetThreadPosts } from './messages/get-thread-posts.command';
+import { Controller, Logger } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
+import { EventPattern, Payload } from '@nestjs/microservices';
 import { PostsService } from './posts.service';
-import { PostEntity } from './entities/post.entity';
+import { firstValueFrom } from 'rxjs';
 import { PostsWrapper } from './dtos/post.dto';
-import { ThreadEntity } from '../threads/entities/thread.entity';
 import { ThreadsService } from '../threads/threads.service';
+import { ThreadEntity } from '../threads/entities/thread.entity';
+import { PostEntity } from './entities/post.entity';
 
 @Controller('posts')
 export class PostsController {
-    constructor(private readonly httpService: HttpService,
-                private readonly postsService: PostsService,
-                private readonly threadsService: ThreadsService) {}
+  private readonly logger = new Logger(PostsController.name);
 
-    @MessagePattern('posts.get')
-    async getPosts(@Payload() threadToRun: GetThreadPosts): Promise<void> {
-        console.log(`posts.get started for ${threadToRun.board}: ${threadToRun.no}`, new Date().toISOString());
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly postsService: PostsService,
+    private readonly threadsService: ThreadsService,
+  ) {}
 
-        // we get the existing thread here to make sure that we have the correct headers to use, if we've gotten this thread before
-        // this should really go into the thread controller and be handed to us, but we don't use it elsewhere there
-        const existing = await this.threadsService.get(threadToRun.board, threadToRun.no);
+  @EventPattern('posts.get')
+  async getPosts(
+    @Payload('board') board: string,
+    @Payload('no') no: number,
+  ): Promise<void> {
+    this.logger.debug(`posts.get started for ${board}: ${no}`);
 
-        // if there was an existing item, check its time and etag
-        if (existing) {
-            try {
-                // do a head request to see if it has been modified since
-                const responseObservable = this.httpService.head(`https://a.4cdn.org/${threadToRun.board}/thread/${threadToRun.no}.json`, {
-                    headers: {
-                        'If-Modified-Since': new Date(existing.Meta.LastModified * 1000),
-                        'Etag': existing.Meta.ETag,
-                    },
-                });
-                const response = await responseObservable.toPromise();
+    try {
+      const response = await firstValueFrom(this.httpService.get<PostsWrapper>(`https://a.4cdn.org/${board}/thread/${no}.json`));
 
-                // if it hasn't been modified, nothing to do
-                if (response.status == 304) {
-                    return;
-                }
-            }
-            catch (e) {
-                console.error('Unable to get thread at HEAD request!');
-                return;
-            }
-        }
+      // first, update the thread with the latest headers
+      const threadEntity: ThreadEntity = {
+        Board: board,
+        Number: no,
+        Meta: {
+          LastModified: new Date(response.headers['last-modified']),
+          ETag: response.headers['etag'],
+        },
+      };
 
-        // now we know it either doesn't exist already, or it has been modified - time to update
-        const rawPosts = await this.fetchPosts(threadToRun);
+      this.threadsService.upsert(threadEntity);
 
-        if (rawPosts != null) {
-            const posts: Array<PostEntity> = [];
-            for (const rawPost of rawPosts.posts) {
-                const post: PostEntity = {
-                    Board: threadToRun.board,
-                    Thread: threadToRun.no,
-                    Comment: rawPost.com,
-                    FileExtension: rawPost.ext,
-                    Filename: rawPost.filename,
-                    FileSize: rawPost.fsize,
-                    FileHeight: rawPost.h,
-                    FileHash: rawPost.md5,
-                    PostersName: rawPost.name,
-                    Number: rawPost.no,
-                    UrlSlug: rawPost.semantic_url,
-                    FileUploaded: (rawPost.tim != null) ? new Date(rawPost.tim) : null,
-                    CreatedAt: new Date(rawPost.time * 1000),
-                    FileWidth: rawPost.w,
-                };
+      // now we can save all the posts
+      const posts = response.data.posts.map(p => {
+        return {
+          Board: board,
+          Thread: no,
+          Comment: p.com,
+          FileExtension: p.ext,
+          Filename: p.filename,
+          FileSize: p.fsize,
+          FileHeight: p.h,
+          FileHash: p.md5,
+          PostersName: p.name,
+          Number: p.no,
+          UrlSlug: p.semantic_url,
+          FileUploaded: (p.tim != null) ? new Date(p.tim) : null,    // note that this INCLUDES microtime, so we don't multiply
+          CreatedAt: new Date(p.time * 1000),
+          FileWidth: p.w,
+          Replies: p.replies,
+          ImageReplies: p.images,
+          UniqueIps: p.unique_ips,
+        } as PostEntity;
+      });
 
-                posts.push(post);
-            }
+      this.logger.debug(`Putting batch of ${posts.length} posts for ${board}: ${no}`);
 
-            console.log(`Putting batch of ${posts.length} posts for ${threadToRun.board}: ${threadToRun.no}`);
-            await this.postsService.putBatch(posts);
-        }
+      this.postsService.putBatch(posts);
     }
-
-    private async fetchPosts(threadToRun: GetThreadPosts): Promise<PostsWrapper | null> {
-        try {
-            const responseObservable = this.httpService.get<PostsWrapper>(`https://a.4cdn.org/${threadToRun.board}/thread/${threadToRun.no}.json`);
-            const response = await responseObservable.toPromise();
-
-            // first, create the thread entity
-            const newEntity: ThreadEntity = {
-                Meta: {
-                    LastModified: threadToRun.last_modified,
-                    ETag: response.headers['etag']
-                },
-                Board: threadToRun.board,
-                Number: threadToRun.no,
-            };
-
-            // and time to save it
-            await this.threadsService.upsert(newEntity);
-
-            return response.data;
-        }
-        catch (e) {
-            console.error('Unable to get thread at HEAD request!');
-            return null;
-        }
+    catch (e) {
+      this.logger.error(`Unable to get ${board}: ${no} at GET request: ${e}`);
+      return;
     }
+  }
 }

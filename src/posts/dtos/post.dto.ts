@@ -1,4 +1,4 @@
-interface Post {
+export interface Post {
   no: number;
   name: string;
   com: string;
@@ -11,10 +11,11 @@ interface Post {
   md5: string;
   fsize: number;
   semantic_url: string;
+  replies: number;
+  images: number;
+  unique_ips: number;
 }
 
-interface PostsWrapper {
-  posts: Array<Post>;
+export interface PostsWrapper {
+  posts: Post[];
 }
-
-export { Post, PostsWrapper };

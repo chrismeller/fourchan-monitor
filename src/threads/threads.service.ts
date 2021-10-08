@@ -1,46 +1,62 @@
-import { Injectable } from '@nestjs/common';
-import * as fs from 'fs';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import {
+  SQLiteDatabase,
+  SQLiteProvider,
+  SQLiteStatement,
+} from '../database/sqlite.provider';
 import * as path from 'path';
-import { SQLiteProvider, SQLiteDatabase, SQLiteStatement } from '../database/sqlite.provider';
+import * as fs from 'fs';
 import { ThreadEntity } from './entities/thread.entity';
 
 @Injectable()
-export class ThreadsService {
-	private readonly db: SQLiteDatabase;
-	private readonly getStatement: SQLiteStatement;
-	private readonly upsertStatement: SQLiteStatement;
+export class ThreadsService implements OnModuleInit {
+  private readonly logger = new Logger(ThreadsService.name);
 
-	constructor(sqlite: SQLiteProvider) {
-		this.db = sqlite.get();
+  private readonly db: SQLiteDatabase;
+  private getStatement!: SQLiteStatement;
+  private upsertStatement!: SQLiteStatement;
 
-		this.getStatement = this.db.prepare(fs.readFileSync(path.join(__dirname, './queries/get.sql')).toString());
-		this.upsertStatement = this.db.prepare(fs.readFileSync(path.join(__dirname, './queries/upsert.sql')).toString());
-	}
+  constructor(sqlite: SQLiteProvider) {
+    this.db = sqlite.get();
+  }
 
-	// @todo we could also just store the serialized json as a key value pair...
-	public get(board: string, threadNumber: number): ThreadEntity | null {
-		try {
-			const result = this.getStatement.get(board, threadNumber);
+  onModuleInit(): void {
+    this.getStatement = this.db.prepare(
+      fs.readFileSync(path.join(__dirname, './queries/get.sql'), 'utf-8'),
+    );
+    this.upsertStatement = this.db.prepare(
+      fs.readFileSync(path.join(__dirname, './queries/upsert.sql'), 'utf-8'),
+    );
 
-			if (result == null) return null;
+    this.logger.debug('Statements prepared.');
+  }
 
-			const thread: ThreadEntity = {
-				Board: result.board,
-				Number: result.number,
-				Meta: {
-					ETag: result.etag,
-					LastModified: result.last_modified,
-				},
-			};
-			return thread;
-		}
-		catch (error) {
-			throw error;
-		}
-	}
+  public get(board: string, threadNumber: number): ThreadEntity | null {
+    try {
+      const result = this.getStatement.get(board, threadNumber);
 
-	public upsert(thread: ThreadEntity): void {
-		// @todo we should store last modified as an ISO date
-		this.upsertStatement.run(thread.Board, thread.Number, thread.Meta.ETag, thread.Meta.LastModified);
-	}
+      if (result == null) return null;
+
+      return {
+        Board: result.board,
+        Number: result.number,
+        Meta: {
+          ETag: result.etag,
+          LastModified: result.last_modified,
+        },
+      } as ThreadEntity;
+    }
+    catch(e) {
+      throw e;
+    }
+  }
+
+  public upsert(thread: ThreadEntity): void {
+    this.upsertStatement.run({
+      board: thread.Board,
+      number: thread.Number,
+      etag: thread.Meta.ETag,
+      last_modified: thread.Meta.LastModified?.toUTCString(),
+    });
+  }
 }
