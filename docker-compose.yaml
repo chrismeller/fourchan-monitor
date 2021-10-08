@@ -1,0 +1,23 @@
+version: "2"
+volumes:
+  sqlite:
+services:
+  nats:
+    image: nats:latest
+    restart: always
+    expose:
+      - 4222
+      - 6222
+    ports:
+      - 8222:8222
+  fourchan-monitor:
+    build: ./
+    image: fourchan-monitor
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - sqlite:/home/node/app/db
+    environment:
+      - NATS_URL=nats://nats:4222
+      - NODE_ENV=production
