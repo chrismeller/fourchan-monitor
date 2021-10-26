@@ -602,9 +602,9 @@
     tslib "2.3.1"
     uuid "8.3.2"
 
-"@nestjs/microservices@^8.0.7":
-  version "8.0.7"
-  resolved "https://registry.npmjs.org/@nestjs/microservices/-/microservices-8.0.7.tgz"
+"@nestjs/microservices@^8.1.2":
+  version "8.1.2"
+  resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-8.1.2.tgz#c621b10ee60a8cde978001c0ba05ffd8cada3994"
   dependencies:
     iterare "1.2.1"
     json-socket "0.3.0"
