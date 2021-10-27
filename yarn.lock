@@ -630,9 +630,9 @@
     jsonc-parser "3.0.0"
     pluralize "8.0.0"
 
-"@nestjs/testing@^8.1.1":
-  version "8.1.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-8.1.1.tgz#bb4b2908c1ae0a2809193052e11a4b3a22e4942a"
+"@nestjs/testing@^8.1.2":
+  version "8.1.2"
+  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-8.1.2.tgz#fc8c3371f45891e935a1b45ae31fd35bd2a045d6"
   dependencies:
     optional "0.1.4"
     tslib "2.3.1"
@@ -3996,15 +3996,9 @@ rxjs@6.6.7, rxjs@^6.6.0:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^7.2.0:
+rxjs@^7.2.0, rxjs@^7.3.1:
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.4.0.tgz#a12a44d7eebf016f5ff2441b87f28c9a51cebc68"
-  dependencies:
-    tslib "~2.1.0"
-
-rxjs@^7.3.0:
-  version "7.3.0"
-  resolved "https://registry.npmjs.org/rxjs/-/rxjs-7.3.0.tgz"
   dependencies:
     tslib "~2.1.0"
 
