@@ -596,10 +596,10 @@
     json-socket "0.3.0"
     tslib "2.3.1"
 
-"@nestjs/platform-express@^8.2.0":
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-8.2.0.tgz#0a3d3882c1d6987535f54e99f665d6738121cffa"
-  integrity sha512-IiYXT1t9hkWWjohHvNWYi/hWk8CCvDY25y8y72zkN5/iyvWWiqwmcGGhji2bENvQx8e/Vlm1d4EkwRFYWfBGjA==
+"@nestjs/platform-express@^8.2.2":
+  version "8.2.2"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-8.2.2.tgz#08d732c6fbcc38adbea0f0722321c460a73aab10"
+  integrity sha512-oguwjj5nZ0StC8ZakMy+lAPp8Fxnq/mmH6QXamYdMIo37UX4AsNUshaOYGTfEgO0Hp2rH0pPpkRo3/b5n59M7w==
   dependencies:
     body-parser "1.19.0"
     cors "2.8.5"
