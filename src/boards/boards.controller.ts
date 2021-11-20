@@ -12,37 +12,40 @@ import { firstValueFrom } from 'rxjs';
 
 @Controller('boards')
 export class BoardsController {
-  private readonly logger = new Logger(BoardsController.name);
+    private readonly logger = new Logger(BoardsController.name);
 
-  constructor(
-    private readonly httpService: HttpService,
-    @Inject('THREADS_SERVICE') private readonly threadsClient: ClientProxy,
-    private readonly configService: ConfigService,
-  ) {}
+    constructor(
+        private readonly httpService: HttpService,
+        @Inject('THREADS_SERVICE') private readonly threadsClient: ClientProxy,
+        private readonly configService: ConfigService,
+    ) {}
 
-  @EventPattern('boards.get')
-  async getBoards(@Ctx() context: NatsContext): Promise<void> {
-    this.logger.debug('boards.get started');
+    @EventPattern('boards.get')
+    async getBoards(@Ctx() context: NatsContext): Promise<void> {
+        this.logger.debug('boards.get started');
 
-    // if the list of boards to run is specified, use those, otherwise we pull them all
-    let boardsToRun: string[] = [];
-    if (this.configService.get<string>('BOARDS') != undefined) {
-      boardsToRun = this.configService.get<string>('BOARDS', '').split(',');
+        // if the list of boards to run is specified, use those, otherwise we pull them all
+        let boardsToRun: string[] = [];
+        if (this.configService.get<string>('BOARDS') != undefined) {
+            boardsToRun = this.configService
+                .get<string>('BOARDS', '')
+                .split(',');
+        } else {
+            const ob = this.httpService.get<BoardsResponseDto>(
+                'https://a.4cdn.org/boards.json',
+            );
+            const response = await firstValueFrom(ob);
+
+            boardsToRun = response.data.boards.map((board) => board.board);
+
+            this.logger.log(`Got ${boardsToRun.length} boards to run!`);
+        }
+
+        for (const board of boardsToRun) {
+            this.logger.log(`Sending threads.get for board ${board}`);
+            await firstValueFrom(
+                this.threadsClient.emit<string>('threads.get', board),
+            );
+        }
     }
-    else {
-      const ob = this.httpService.get<BoardsResponseDto>(
-        'https://a.4cdn.org/boards.json',
-      );
-      const response = await firstValueFrom(ob);
-
-      boardsToRun = response.data.boards.map((board) => board.board);
-
-      this.logger.log(`Got ${boardsToRun.length} boards to run!`);
-    }
-
-    for (const board of boardsToRun) {
-      this.logger.log(`Sending threads.get for board ${board}`);
-      await firstValueFrom(this.threadsClient.emit<string>('threads.get', board));
-    }
-  }
 }
