@@ -17,7 +17,9 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - sqlite:/home/node/app/db
+      - /mnt/4cm-db/db:/home/node/app/db
     environment:
       - NATS_URL=nats://nats:4222
       - NODE_ENV=production
+      - SQLITE_LOCATION=/home/node/app/db
+      - BOARDS=b,pol,biz,adv,trv,news,int
