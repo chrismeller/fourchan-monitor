@@ -1,18 +1,20 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { ThreadsController } from './threads.controller';
 import { ThreadsService } from './threads.service';
-import {
-    ClientProxyFactory,
-    Transport,
-} from '@nestjs/microservices';
+import { ClientProxyFactory, Transport } from '@nestjs/microservices';
 import { DatabaseModule } from '../database/database.module';
 import { HttpModule } from '@nestjs/axios';
-import { PostsModule } from '../posts/posts.module';
-import { ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { NatsOptions } from '@nestjs/microservices/interfaces/microservice-configuration.interface';
+import { PostsModule } from 'src/posts/posts.module';
 
 @Module({
-    imports: [HttpModule, DatabaseModule, PostsModule],
+    imports: [
+        HttpModule,
+        DatabaseModule,
+        ConfigModule,
+        forwardRef(() => PostsModule),
+    ],
     controllers: [ThreadsController],
     providers: [
         ThreadsService,

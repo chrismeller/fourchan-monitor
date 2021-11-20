@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { PostsController } from './posts.controller';
 import { PostsService } from './posts.service';
 import { DatabaseModule } from '../database/database.module';
@@ -9,7 +9,12 @@ import { ClientProxyFactory, Transport } from '@nestjs/microservices';
 import { NatsOptions } from '@nestjs/microservices/interfaces/microservice-configuration.interface';
 
 @Module({
-    imports: [HttpModule, ConfigModule, DatabaseModule, ThreadsModule],
+    imports: [
+        HttpModule,
+        ConfigModule,
+        DatabaseModule,
+        forwardRef(() => ThreadsModule),
+    ],
     controllers: [PostsController],
     providers: [
         PostsService,
