@@ -1,6 +1,4 @@
 version: "2"
-volumes:
-  sqlite:
 services:
   nats:
     image: nats:latest
@@ -10,7 +8,7 @@ services:
       - 6222
     ports:
       - 8222:8222
-  fourchan-monitor:
+  monitor:
     build: ./
     image: fourchan-monitor
     restart: always
