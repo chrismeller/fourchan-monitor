@@ -28,7 +28,7 @@
     "@nestjs/common": "^8.2.3",
     "@nestjs/config": "^1.1.5",
     "@nestjs/core": "^8.2.3",
-    "@nestjs/microservices": "^8.2.3",
+    "@nestjs/microservices": "^8.2.4",
     "@nestjs/platform-express": "^8.2.3",
     "better-sqlite3": "^7.4.5",
     "nats": "^2.4.0",
