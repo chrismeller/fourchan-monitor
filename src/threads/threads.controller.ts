@@ -30,7 +30,7 @@ export class ThreadsController {
         @Payload() board: string,
         @Ctx() context: NatsContext,
     ): Promise<void> {
-        this.logger.debug(`threads.get started for board ${board}`);
+        this.logger.log(`threads.get started for board ${board}`);
 
         const response = await firstValueFrom(
             this.httpService.get<ThreadPageDto[]>(
@@ -108,7 +108,7 @@ export class ThreadsController {
             }
 
             // otherwise, we pass it along to fetch
-            this.logger.log(`Sending posts.get for ${board}: ${no}`);
+            this.logger.debug(`Sending posts.get for ${board}: ${no}`);
             await firstValueFrom(
                 this.postsClient.emit<GetThreadPosts>('posts.get', {
                     board: board,
