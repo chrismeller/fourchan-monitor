@@ -21,3 +21,4 @@ services:
       - NODE_ENV=production
       - SQLITE_LOCATION=/home/node/app/db
       - BOARDS=b,pol,biz,adv,trv,news,int
+      - LOG_LEVELS=log,warn,error
