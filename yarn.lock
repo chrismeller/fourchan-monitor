@@ -772,16 +772,14 @@
     tslib "2.3.1"
     uuid "8.3.2"
 
-"@nestjs/config@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@nestjs/config/-/config-1.1.5.tgz#6242274706e5b0d4849eb3217b47fdabd63182dc"
-  integrity sha512-xSpp/6TIHFhicuuwRu2fFGmClzN+YXtpVSLGX3LT9iAwtNDcccX3qVDOX1BLdFdBbqZTqT3KezsT+iE/czd/xg==
+"@nestjs/config@^1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@nestjs/config/-/config-1.1.6.tgz#bbb3578f052d9ef9d13ed5071870ff1bfcfcae7c"
+  integrity sha512-HYizKt6Dr6gcZl8FmZbTfQxP0MG8oXMh+gVFT0XCwYDAq26BOKyhPsIxrKsryicVeKViRgetCUhlJY9EqaekZA==
   dependencies:
     dotenv "10.0.0"
     dotenv-expand "5.1.0"
-    lodash.get "4.4.2"
-    lodash.has "4.5.2"
-    lodash.set "4.3.2"
+    lodash "4.17.21"
     uuid "8.3.2"
 
 "@nestjs/core@^8.2.4":
@@ -3502,14 +3500,6 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
-lodash.get@4.4.2:
-  version "4.4.2"
-  resolved "https://registry.npmjs.org/lodash.get/-/lodash.get-4.4.2.tgz"
-
-lodash.has@4.5.2:
-  version "4.5.2"
-  resolved "https://registry.npmjs.org/lodash.has/-/lodash.has-4.5.2.tgz"
-
 lodash.memoize@4.x:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
@@ -3518,11 +3508,7 @@ lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
 
-lodash.set@4.3.2:
-  version "4.3.2"
-  resolved "https://registry.npmjs.org/lodash.set/-/lodash.set-4.3.2.tgz"
-
-lodash@^4.17.19, lodash@^4.17.21, lodash@^4.7.0:
+lodash@4.17.21, lodash@^4.17.19, lodash@^4.17.21, lodash@^4.7.0:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
 
