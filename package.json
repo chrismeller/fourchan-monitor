@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "author": "Chris Meller",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "scripts": {
     "clean": "rimraf dist && rimraf node_modules",
     "clean:db": "rimraf db",
