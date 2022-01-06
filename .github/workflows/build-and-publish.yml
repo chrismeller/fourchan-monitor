@@ -20,9 +20,10 @@ jobs:
           node-version: 16
           cache: yarn
       - run: yarn install --frozen-lockfile --production=false
-      - run: yarn run test
-      - run: yarn run lint
+      #- run: yarn run test
+      #- run: yarn run lint
       - run: yarn run build
+      - run: yarn install --frozen-lockfile --production=true
 
   publish-gpr:
     needs: build
