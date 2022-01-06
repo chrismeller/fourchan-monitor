@@ -5,7 +5,7 @@
   "author": "Chris Meller",
   "license": "Apache-2.0",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/chrismeller/fourchan-monitor"
+    "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
     "clean": "rimraf dist && rimraf node_modules",
