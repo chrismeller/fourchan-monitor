@@ -1022,10 +1022,10 @@
   version "1.3.2"
   resolved "https://registry.npmjs.org/@types/mime/-/mime-1.3.2.tgz"
 
-"@types/node@*", "@types/node@^17.0.8":
-  version "17.0.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.8.tgz#50d680c8a8a78fe30abe6906453b21ad8ab0ad7b"
-  integrity sha512-YofkM6fGv4gDJq78g4j0mMuGMkZVxZDgtU0JRdx6FgiJDG+0fY0GKVolOV8WqVmEhLCXkQRjwDdKyPxJp/uucg==
+"@types/node@*", "@types/node@^17.0.9":
+  version "17.0.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.9.tgz#0b7f161afb5b1cc12518d29b2cdc7175d5490628"
+  integrity sha512-5dNBXu/FOER+EXnyah7rn8xlNrfMOQb/qXnw4NQgLkCygKBKhdmF/CA5oXVOKZLBEahw8s2WP9LxIcN/oDDRgQ==
 
 "@types/node@^14.0.26":
   version "14.17.18"
@@ -4254,10 +4254,10 @@ rxjs@6.6.7, rxjs@^6.6.0:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^7.2.0, rxjs@^7.5.1:
-  version "7.5.1"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.5.1.tgz#af73df343cbcab37628197f43ea0c8256f54b157"
-  integrity sha512-KExVEeZWxMZnZhUZtsJcFwz8IvPvgu4G2Z2QyqjZQzUGr32KDYuSxrEYO4w3tFFNbfLozcrKUTvTPi+E9ywJkQ==
+rxjs@^7.2.0, rxjs@^7.5.2:
+  version "7.5.2"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.5.2.tgz#11e4a3a1dfad85dbf7fb6e33cbba17668497490b"
+  integrity sha512-PwDt186XaL3QN5qXj/H9DGyHhP3/RYYgZZwqBv9Tv8rsAaiwFH1IsJJlcgD37J7UW5a6O67qX0KWKS3/pu0m4w==
   dependencies:
     tslib "^2.1.0"
 
@@ -4524,10 +4524,10 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-2.0.1.tgz"
 
-superagent@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/superagent/-/superagent-7.0.1.tgz#4c5b8c3501b2c6bf0b2e7b8fd8b342f6d3d12a29"
-  integrity sha512-2nFiZ2ds29iRFSjZ291vq+AxqUDg8BdFeg/AObJkDpCVJX6IJT8fU7egBOkYwmxPwaDoNrNu8qRDvtAV/7ZTPw==
+superagent@^7.0.2:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/superagent/-/superagent-7.0.2.tgz#8fa6d283c9e7cd52928b96cf422356019248e8c4"
+  integrity sha512-2Kx35bZxLLJMBKtuXezxvD0aZQ7l923VwoCn7EtUx+aFxdG7co7PeRIddfrNtvvMuGaLZXA0mKzX+yWRhjrJ7A==
   dependencies:
     component-emitter "^1.3.0"
     cookiejar "^2.1.3"
@@ -4541,13 +4541,13 @@ superagent@^7.0.1:
     readable-stream "^3.6.0"
     semver "^7.3.5"
 
-supertest@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/supertest/-/supertest-6.2.0.tgz#5ce9e1603744d79b6620e65d2e16e9dc635244ae"
-  integrity sha512-JU30iTy0Utm5GbVJvrtt6RHNQECiqVl6KckEVhnR0AoGzFGq0IFMmBXnoTxYy9pM/vgufiPevjxlF39XaKn77Q==
+supertest@^6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/supertest/-/supertest-6.2.1.tgz#add42f1afa661fa5b3083da05c6c964069768e0f"
+  integrity sha512-2kBKhfZgnPLmjpzB0n7A2ZnEAWTaLXq4bn3EEVY9w8rUpLyIlSusqKKvWA1Cav7hxXBnXGpxBsSeOHj5wQGe1Q==
   dependencies:
     methods "^1.1.2"
-    superagent "^7.0.1"
+    superagent "^7.0.2"
 
 supports-color@^5.3.0:
   version "5.5.0"
