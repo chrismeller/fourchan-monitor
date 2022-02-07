@@ -3773,10 +3773,10 @@ napi-build-utils@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npmjs.org/napi-build-utils/-/napi-build-utils-1.0.2.tgz"
 
-nats@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/nats/-/nats-2.5.0.tgz#a8a4d6cf1a3307106806992e1f95b6d901fc62a1"
-  integrity sha512-2kx4Aud9l6iDhIkBBxcZIDizDy58jaEnNPnVLkRNNx8CPxX00BXbjUpa2n/U0/DOwmo5mTY30sg3s/67O7IJvg==
+nats@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/nats/-/nats-2.6.0.tgz#1cbe9fb850be4269636a595d4b28e3b848a94af8"
+  integrity sha512-K6DhZ91TKfk5brL+Fyjys4I+nb0X/x27O16OYvxP/FMLQolQtZ37Ldkh8uwdNLPONztRXLUxRnXf0o9lxAxHeA==
   dependencies:
     nkeys.js "^1.0.0-9"
 
