@@ -773,10 +773,10 @@
     webpack "5.70.0"
     webpack-node-externals "3.0.0"
 
-"@nestjs/common@^8.4.1":
-  version "8.4.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-8.4.1.tgz#2a0d166d29beb5bf740dfdddc62c7bd04c39c53f"
-  integrity sha512-g6beLHvJ2cCIdlW8Uui8rQh3+oxLOBLzDIk3yWH4ocp2HEgOJwF0iUv/pk33tFuwbXESIGMK8K165cpZUjNoxA==
+"@nestjs/common@^8.4.2":
+  version "8.4.2"
+  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-8.4.2.tgz#39acb463aef1864fe6971422b2d8573857e0ba6f"
+  integrity sha512-l5CTBvW7PaqZPHRwtLU7G0NK2XBLQZL8jnvH0ArGGduljb5MpgsXwgDt8OYlc5m50IGBL/2j70Cad3CEpKcLUA==
   dependencies:
     axios "0.26.1"
     iterare "1.2.1"
@@ -4046,11 +4046,6 @@ prettier-linter-helpers@^1.0.0:
   resolved "https://registry.npmjs.org/prettier-linter-helpers/-/prettier-linter-helpers-1.0.0.tgz"
   dependencies:
     fast-diff "^1.1.2"
-
-prettier@^2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.5.1.tgz#fff75fa9d519c54cf0fce328c1017d94546bc56a"
-  integrity sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==
 
 pretty-format@^27.0.0, pretty-format@^27.5.1:
   version "27.5.1"
