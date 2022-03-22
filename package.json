@@ -31,7 +31,7 @@
     "@nestjs/common": "^8.4.2",
     "@nestjs/config": "^2.0.0",
     "@nestjs/core": "^8.4.2",
-    "@nestjs/microservices": "^8.4.1",
+    "@nestjs/microservices": "^8.4.2",
     "@nestjs/platform-express": "^8.4.2",
     "better-sqlite3": "^7.5.0",
     "nats": "^2.6.1",
