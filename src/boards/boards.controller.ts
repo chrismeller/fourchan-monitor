@@ -26,7 +26,7 @@ export class BoardsController {
 
         // if the list of boards to run is specified, use those, otherwise we pull them all
         let boardsToRun: string[] = [];
-        if (this.configService.get<string>('BOARDS') != undefined) {
+        if (this.configService.get<string>('BOARDS') != null) {
             boardsToRun = this.configService
                 .get<string>('BOARDS', '')
                 .split(',');
