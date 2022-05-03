@@ -7,3 +7,4 @@ A NestJS microservices app using NATS that politely polls the 4chan API for all 
 3. Scalable. Uses [SQLite](https://sqlite.org) for storage with batch operations properly wrapped in transactions.
 4. Polite. Properly uses ETag and Last-Modified headers with HEAD requests to reduce load and traffic to the API.
 5. Stable. A tried-and-true stack that's easy to maintain. No surprises here.
+6. Up-to-date and secure. [Renovate](https://www.whitesourcesoftware.com/free-developer-tools/renovate/) and [Bolt](https://www.whitesourcesoftware.com/free-developer-tools/bolt/) from WhiteSource keep dependencies updated and secure.
