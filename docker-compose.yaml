@@ -10,7 +10,7 @@ services:
       - 8222:8222
   monitor:
     build: ./
-    image: fourchan-monitor
+    image: ghcr.io/chrismeller/fourchan-monitor:main
     restart: always
     ports:
       - 3000:3000
