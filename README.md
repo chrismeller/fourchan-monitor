@@ -11,4 +11,4 @@ A NestJS microservices app using NATS that politely polls the 4chan API for all 
 7. Easy. Fully Docker-based.
 
 ## Usage
-Just edit the paths for your database volume in the compose file, then `docker-compose up -d`.
+Just edit the paths for your database volume in the compose file, then `docker-compose up -d`. When it's time to update, simply `docker-compose pull && docker-compose up -d`.
