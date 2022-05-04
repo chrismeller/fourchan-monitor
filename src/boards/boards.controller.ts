@@ -26,11 +26,13 @@ export class BoardsController {
 
         // if the list of boards to run is specified, use those, otherwise we pull them all
         let boardsToRun: string[] = [];
-        if (this.configService.get<string>('BOARDS') != null) {
-            boardsToRun = this.configService
-                .get<string>('BOARDS', '')
-                .split(',');
+        const configBoards = this.configService.get<string>('BOARDS', '');
+        if (configBoards != '') {
+            boardsToRun = configBoards.split(',');
         } else {
+            this.logger.error('Boards to run not configured. Specify a comma-separated list of boards to run in your config!');
+            return;
+
             const ob = this.httpService.get<BoardsResponseDto>(
                 'https://a.4cdn.org/boards.json',
             );
