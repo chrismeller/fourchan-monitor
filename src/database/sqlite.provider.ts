@@ -18,6 +18,7 @@ export class SQLiteProvider implements OnModuleInit {
         this.db.pragma('synchronous = NORMAL');
         this.db.pragma('temp_store= memory');
         this.db.pragma('mmap_size = 30000000000');
+        this.db.pragma('auto_vacuum = FULL');
     }
 
     get(): SQLite.Database {
