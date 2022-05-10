@@ -12,7 +12,7 @@ export class AppController {
 
     @Get('hello')
     async getHello(): Promise<string> {
-        await firstValueFrom(this.client.emit('boards.get', {}));
+        this.client.emit('boards.get', {});
         return 'ok';
     }
 }
