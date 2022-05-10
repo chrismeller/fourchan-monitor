@@ -1,13 +1,12 @@
-import { Controller, Inject, Logger } from '@nestjs/common';
+import { Controller, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { ClientProxy, EventPattern, Payload } from '@nestjs/microservices';
+import { EventPattern, Payload } from '@nestjs/microservices';
 import { PostsService } from './posts.service';
 import { firstValueFrom } from 'rxjs';
 import { PostsWrapper } from './dtos/post.dto';
 import { ThreadsService } from '../threads/threads.service';
 import { ThreadEntity } from '../threads/entities/thread.entity';
 import { PostEntity } from './entities/post.entity';
-import { FixPostDates } from './messages/fix-post-dates.command';
 
 @Controller('posts')
 export class PostsController {
@@ -17,7 +16,6 @@ export class PostsController {
         private readonly httpService: HttpService,
         private readonly postsService: PostsService,
         private readonly threadsService: ThreadsService,
-        @Inject('POSTS_SERVICE') private readonly postsClient: ClientProxy,
     ) {}
 
     @EventPattern('posts.fix-dates')
@@ -93,9 +91,5 @@ export class PostsController {
             );
             return;
         }
-
-        await firstValueFrom(
-            this.postsClient.emit<FixPostDates>('posts.fix-dates', { board: board }),
-        );
     }
 }
