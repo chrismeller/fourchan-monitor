@@ -15,6 +15,8 @@ export class ThreadsService implements OnModuleInit {
     private readonly db: SQLiteDatabase;
     private getStatement!: SQLiteStatement;
     private upsertStatement!: SQLiteStatement;
+    private getBadDatesStatement!: SQLiteStatement;
+    private updateBadDatesStatement!: SQLiteStatement;
 
     constructor(sqlite: SQLiteProvider) {
         this.db = sqlite.get();
@@ -27,6 +29,18 @@ export class ThreadsService implements OnModuleInit {
         this.upsertStatement = this.db.prepare(
             fs.readFileSync(
                 path.join(__dirname, './queries/upsert.sql'),
+                'utf-8',
+            ),
+        );
+        this.getBadDatesStatement = this.db.prepare(
+            fs.readFileSync(
+                path.join(__dirname, './queries/get-bad-dates.sql'),
+                'utf-8',
+            ),
+        );
+        this.updateBadDatesStatement = this.db.prepare(
+            fs.readFileSync(
+                path.join(__dirname, './queries/update-bad-dates.sql'),
                 'utf-8',
             ),
         );
@@ -58,7 +72,38 @@ export class ThreadsService implements OnModuleInit {
             board: thread.Board,
             number: thread.Number,
             etag: thread.Meta.ETag,
-            last_modified: thread.Meta.LastModified?.toUTCString(),
+            last_modified: thread.Meta.LastModified?.toISOString(),
+        });
+    }
+
+    public batchFixDates(threads: ThreadEntity[]): void {
+        const upsertBatch = this.db.transaction((threads) => {
+            for (const thread of threads) {
+                const d = new Date(thread.Meta.LastModified);
+
+                this.updateBadDatesStatement.run({
+                    board: thread.Board,
+                    number: thread.Number,
+                    last_modified: d.toISOString(),
+                });
+            }
+        });
+
+        upsertBatch(threads);
+    }
+
+    public getBatchOfInvalidDates(board: string): ThreadEntity[] {
+        const result = this.getBadDatesStatement.all(board);
+
+        return result.map((x: any) => {
+            return {
+                Board: x.board,
+                Number: x.number,
+                Meta: {
+                    ETag: x.etag,
+                    LastModified: x.last_modified,
+                },
+            } as ThreadEntity;
         });
     }
 }

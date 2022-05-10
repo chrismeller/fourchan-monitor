@@ -13,6 +13,7 @@ import { ThreadPageDto } from './dtos/thread-page.dto';
 import { ThreadEntity } from './entities/thread.entity';
 import { GetThreadPosts } from '../posts/messages/get-thread-posts.command';
 import { CheckThread } from './messages/check-thread.command';
+import { FixThreadDates } from './messages/fix-thread-dates.command';
 
 @Controller('threads')
 export class ThreadsController {
@@ -24,6 +25,19 @@ export class ThreadsController {
         @Inject('POSTS_SERVICE') private readonly postsClient: ClientProxy,
         private readonly threadsService: ThreadsService,
     ) {}
+
+    @EventPattern('threads.fix-dates')
+    async fixThreadDates(@Payload('board') board: string) {
+        this.logger.debug(`threads.fix-dates started for board ${board}`);
+
+        const batch = this.threadsService.getBatchOfInvalidDates(board);
+
+        this.logger.debug(`Got ${batch.length} threads with bad dates to fix.`);
+
+        this.threadsService.batchFixDates(batch);
+
+        this.logger.debug(`threads.fix-dates completed for board ${board}`);
+    }
 
     @EventPattern('threads.get')
     async getThreadPages(
@@ -71,6 +85,10 @@ export class ThreadsController {
 
         this.logger.debug(
             `threads.get got ${threadsFound} threads for board ${board}`,
+        );
+
+        await firstValueFrom(
+            this.threadsClient.emit<FixThreadDates>('threads.fix-dates', { board: board }),
         );
     }
 

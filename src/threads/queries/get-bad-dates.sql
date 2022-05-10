@@ -1,0 +1,1 @@
+select * from threads where last_modified not like '2%' and board = ? limit 1000;
