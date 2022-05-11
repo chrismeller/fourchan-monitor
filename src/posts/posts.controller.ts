@@ -24,7 +24,7 @@ export class PostsController {
 
         const batch = this.postsService.getBatchOfInvalidDates(board);
 
-        this.logger.debug(`Got ${batch.length} posts with bad dates to fix.`);
+        this.logger.log(`Got ${batch.length} posts with bad dates to fix.`);
 
         this.postsService.batchFixDates(batch);
 

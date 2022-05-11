@@ -33,7 +33,7 @@ export class ThreadsController {
 
         const batch = this.threadsService.getBatchOfInvalidDates(board);
 
-        this.logger.debug(`Got ${batch.length} threads with bad dates to fix.`);
+        this.logger.log(`Got ${batch.length} threads with bad dates to fix.`);
 
         this.threadsService.batchFixDates(batch);
 
