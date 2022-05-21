@@ -88,13 +88,13 @@ export class ThreadsController {
             `threads.get got ${threadsFound} threads for board ${board}`,
         );
 
-        await firstValueFrom(
-            this.threadsClient.emit<FixThreadDates>('threads.fix-dates', { board: board }),
-        );
+        // await firstValueFrom(
+        //     this.threadsClient.emit<FixThreadDates>('threads.fix-dates', { board: board }),
+        // );
 
-        await firstValueFrom(
-            this.postsClient.emit<FixPostDates>('posts.fix-dates', { board: board }),
-        );
+        // await firstValueFrom(
+        //     this.postsClient.emit<FixPostDates>('posts.fix-dates', { board: board }),
+        // );
     }
 
     @EventPattern('threads.check')
