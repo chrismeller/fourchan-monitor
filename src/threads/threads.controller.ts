@@ -30,7 +30,7 @@ export class ThreadsController {
     async fixThreadDates(@Payload('board') board: string) {
         this.logger.debug(`threads.fix-dates started for board ${board}`);
 
-        const batch = this.threadsService.getBatchOfInvalidDates(board);
+        const batch = this.threadsService.getBatchOfInvalidDates();
 
         this.logger.log(`Got ${batch.length} threads with bad dates to fix.`);
 

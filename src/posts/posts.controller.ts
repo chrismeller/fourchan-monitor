@@ -24,7 +24,7 @@ export class PostsController {
     async fixThreadDates(@Payload('board') board: string) {
         this.logger.debug(`posts.fix-dates started for board ${board}`);
 
-        const batch = this.postsService.getBatchOfInvalidDates(board);
+        const batch = this.postsService.getBatchOfInvalidDates();
 
         this.logger.log(`Got ${batch.length} posts with bad dates to fix.`);
 

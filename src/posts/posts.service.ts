@@ -97,8 +97,8 @@ export class PostsService implements OnModuleInit {
         upsertBatch(posts);
     }
 
-    public getBatchOfInvalidDates(board: string): PostEntity[] {
-        const result = this.getBadDatesStatement.all(board);
+    public getBatchOfInvalidDates(): PostEntity[] {
+        const result = this.getBadDatesStatement.all();
 
         return result.map((x: any) => {
             return {
