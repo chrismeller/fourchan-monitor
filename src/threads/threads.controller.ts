@@ -14,7 +14,6 @@ import { ThreadEntity } from './entities/thread.entity';
 import { GetThreadPosts } from '../posts/messages/get-thread-posts.command';
 import { CheckThread } from './messages/check-thread.command';
 import { FixThreadDates } from './messages/fix-thread-dates.command';
-import { FixPostDates } from 'src/posts/messages/fix-post-dates.command';
 
 @Controller('threads')
 export class ThreadsController {
@@ -88,13 +87,9 @@ export class ThreadsController {
             `threads.get got ${threadsFound} threads for board ${board}`,
         );
 
-        // await firstValueFrom(
-        //     this.threadsClient.emit<FixThreadDates>('threads.fix-dates', { board: board }),
-        // );
-
-        // await firstValueFrom(
-        //     this.postsClient.emit<FixPostDates>('posts.fix-dates', { board: board }),
-        // );
+        await firstValueFrom(
+            this.threadsClient.emit<FixThreadDates>('threads.fix-dates', { board: board }),
+        );
     }
 
     @EventPattern('threads.check')
