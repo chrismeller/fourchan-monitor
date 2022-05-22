@@ -92,7 +92,7 @@ export class ThreadsService implements OnModuleInit {
         upsertBatch(threads);
     }
 
-    public getBatchOfInvalidDates(board: string): ThreadEntity[] {
+    public getBatchOfInvalidDates(): ThreadEntity[] {
         const result = this.getBadDatesStatement.all();
 
         return result.map((x: any) => {
