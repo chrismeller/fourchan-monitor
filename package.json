@@ -37,7 +37,7 @@
     "@nestjs/microservices": "8.4.5",
     "@nestjs/platform-express": "8.4.5",
     "better-sqlite3": "7.5.3",
-    "nats": "2.6.1",
+    "nats": "2.7.1",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "7.5.5"
