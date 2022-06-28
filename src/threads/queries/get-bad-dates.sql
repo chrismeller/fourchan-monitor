@@ -1,1 +1,0 @@
-select * from threads where last_modified not like '2%' limit 10;

@@ -1,1 +1,0 @@
-update posts set created_at = @created_at, file_uploaded = @file_uploaded where board = @board and number = @number;

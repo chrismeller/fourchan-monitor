@@ -18,19 +18,6 @@ export class PostsController {
         private readonly threadsService: ThreadsService,
     ) {}
 
-    @EventPattern('posts.fix-dates')
-    async fixThreadDates(@Payload('board') board: string) {
-        this.logger.debug(`posts.fix-dates started for board ${board}`);
-
-        const batch = this.postsService.getBatchOfInvalidDates();
-
-        this.logger.log(`Got ${batch.length} posts with bad dates to fix.`);
-
-        this.postsService.batchFixDates(batch);
-
-        this.logger.debug(`posts.fix-dates completed for board ${board}`);
-    }
-
     @EventPattern('posts.get')
     async getPosts(
         @Payload('board') board: string,

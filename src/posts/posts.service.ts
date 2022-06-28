@@ -15,8 +15,6 @@ export class PostsService implements OnModuleInit {
     private readonly db: SQLiteDatabase;
     private getStatement!: SQLiteStatement;
     private upsertStatement!: SQLiteStatement;
-    private getBadDatesStatement!: SQLiteStatement;
-    private updateBadDatesStatement!: SQLiteStatement;
 
     constructor(sqlite: SQLiteProvider) {
         this.db = sqlite.get();
@@ -29,18 +27,6 @@ export class PostsService implements OnModuleInit {
         this.upsertStatement = this.db.prepare(
             fs.readFileSync(
                 path.join(__dirname, './queries/upsert.sql'),
-                'utf-8',
-            ),
-        );
-        this.getBadDatesStatement = this.db.prepare(
-            fs.readFileSync(
-                path.join(__dirname, './queries/get-bad-dates.sql'),
-                'utf-8',
-            ),
-        );
-        this.updateBadDatesStatement = this.db.prepare(
-            fs.readFileSync(
-                path.join(__dirname, './queries/update-bad-dates.sql'),
                 'utf-8',
             ),
         );
@@ -77,37 +63,5 @@ export class PostsService implements OnModuleInit {
         });
 
         t(posts);
-    }
-
-    public batchFixDates(posts: PostEntity[]): void {
-        const upsertBatch = this.db.transaction((posts) => {
-            for (const post of posts) {
-                const created = new Date(post.CreatedAt);
-                const uploaded = (post.FileUploaded) ? new Date(post.FileUploaded) : null;
-
-                this.updateBadDatesStatement.run({
-                    board: post.Board,
-                    number: post.Number,
-                    created_at: created.toISOString(),
-                    file_uploaded: uploaded?.toISOString(),
-                });
-            }
-        });
-
-        upsertBatch(posts);
-    }
-
-    public getBatchOfInvalidDates(): PostEntity[] {
-        const result = this.getBadDatesStatement.all();
-
-        return result.map((x: any) => {
-            return {
-                Board: x.board,
-                Number: x.number,
-                Thread: x.thread,
-                CreatedAt: x.created_at,
-                FileUploaded: x.file_uploaded,
-            } as PostEntity;
-        });
     }
 }

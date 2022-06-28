@@ -1,1 +1,0 @@
-select * from posts where ( created_at not like '2%' or ( file_uploaded is not null and file_uploaded not like '2%' ) ) limit 10;
