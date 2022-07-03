@@ -7,15 +7,15 @@ import { Logger, LogLevel } from '@nestjs/common';
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
 
-    const configSerivce = app.get(ConfigService);
+    const configService = app.get(ConfigService);
 
-    const logLevels = configSerivce.get<string>('LOG_LEVELS', 'error,warn');
+    const logLevels = configService.get<string>('LOG_LEVELS', 'error,warn');
     app.useLogger(logLevels.split(',') as LogLevel[]);
 
     app.connectMicroservice({
         transport: Transport.NATS,
         options: {
-            servers: [configSerivce.get<string>('NATS_URL')],
+            servers: [configService.get<string>('NATS_URL')],
         },
     });
 
