@@ -1,7 +1,6 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { PostsController } from './posts.controller';
 import { PostsService } from './posts.service';
-import { DatabaseModule } from '../database/database.module';
 import { HttpModule } from '@nestjs/axios';
 import { ThreadsModule } from '../threads/threads.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -14,7 +13,6 @@ import { Post } from './entities/post.entity';
     imports: [
         HttpModule,
         ConfigModule,
-        DatabaseModule,
         forwardRef(() => ThreadsModule),
         MikroOrmModule.forFeature([Post]),
     ],

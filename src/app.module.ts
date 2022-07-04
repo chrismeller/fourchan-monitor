@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { DatabaseModule } from './database/database.module';
 import { BoardsModule } from './boards/boards.module';
 import { ThreadsModule } from './threads/threads.module';
 import { PostsModule } from './posts/posts.module';
@@ -26,7 +25,6 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
                 autoLoadEntities: true,
             }),
         }),
-        DatabaseModule,
         BoardsModule,
         ThreadsModule,
         PostsModule,

@@ -2,7 +2,6 @@ import { forwardRef, Module } from '@nestjs/common';
 import { ThreadsController } from './threads.controller';
 import { ThreadsService } from './threads.service';
 import { ClientProxyFactory, Transport } from '@nestjs/microservices';
-import { DatabaseModule } from '../database/database.module';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { NatsOptions } from '@nestjs/microservices/interfaces/microservice-configuration.interface';
@@ -13,7 +12,6 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 @Module({
     imports: [
         HttpModule,
-        DatabaseModule,
         ConfigModule,
         forwardRef(() => PostsModule),
         MikroOrmModule.forFeature([Thread]),
