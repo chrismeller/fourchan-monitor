@@ -16,7 +16,6 @@
     "clean:db": "rimraf db",
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "postbuild": "ts-node ./build/copyMigrations.ts && copyfiles --verbose --up 1 src/**/queries/*.sql dist/",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
