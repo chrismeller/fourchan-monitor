@@ -1,10 +1,16 @@
-interface Meta {
-    ETag?: string;
-    LastModified: Date;
-}
+import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 
-export interface ThreadEntity {
-    Board: string;
-    Number: number;
-    Meta: Meta;
+@Entity()
+export class Thread {
+    @PrimaryKey({ length: 5 })
+    board!: string;
+
+    @PrimaryKey()
+    number!: number;
+
+    @Property({ nullable: true })
+    etag?: string;
+
+    @Property()
+    lastModified!: Date;
 }

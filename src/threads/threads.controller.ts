@@ -10,7 +10,7 @@ import {
 import { ThreadsService } from './threads.service';
 import { firstValueFrom } from 'rxjs';
 import { ThreadPageDto } from './dtos/thread-page.dto';
-import { ThreadEntity } from './entities/thread.entity';
+import { Thread } from './entities/thread.entity';
 import { GetThreadPosts } from '../posts/messages/get-thread-posts.command';
 import { CheckThread } from './messages/check-thread.command';
 
@@ -43,25 +43,23 @@ export class ThreadsController {
             for (const thread of threadPage.threads) {
                 // we only use existing for the etag, if there is one, so it doesn't get wiped out
                 // otherwise, we can upsert the whole thing and not care - we have the rest of the info
-                const existing = this.threadsService.get(board, thread.no);
+                const existing = await this.threadsService.get(board, thread.no);
 
-                const dbThread: ThreadEntity = {
-                    Board: board,
-                    Number: thread.no,
-                    Meta: {
-                        LastModified: new Date(thread.last_modified * 1000),
-                        ETag: existing?.Meta.ETag,
-                    },
+                const dbThread: Thread = {
+                    board: board,
+                    number: thread.no,
+                    lastModified: new Date(thread.last_modified * 1000),
+                    etag: existing?.etag,
                 };
 
                 this.threadsService.upsert(dbThread);
 
                 await firstValueFrom(
                     this.threadsClient.emit<CheckThread>('threads.check', {
-                        board: dbThread.Board,
-                        no: dbThread.Number,
-                        last_modified: dbThread.Meta.LastModified,
-                        etag: dbThread.Meta.ETag,
+                        board: dbThread.board,
+                        no: dbThread.number,
+                        last_modified: dbThread.lastModified,
+                        etag: dbThread.etag,
                     }),
                 );
 

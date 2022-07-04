@@ -1,64 +1,39 @@
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import {
-    SQLiteDatabase,
-    SQLiteProvider,
-    SQLiteStatement,
-} from '../database/sqlite.provider';
-import * as path from 'path';
-import * as fs from 'fs';
-import { ThreadEntity } from './entities/thread.entity';
+import { InjectRepository } from '@mikro-orm/nestjs';
+import { EntityRepository } from '@mikro-orm/postgresql';
+import { Injectable, Logger } from '@nestjs/common';
+import { Thread } from './entities/thread.entity';
+import { MikroORM, UseRequestContext } from '@mikro-orm/core';
 
 @Injectable()
-export class ThreadsService implements OnModuleInit {
+export class ThreadsService {
     private readonly logger = new Logger(ThreadsService.name);
 
-    private readonly db: SQLiteDatabase;
-    private getStatement!: SQLiteStatement;
-    private upsertStatement!: SQLiteStatement;
-
-    constructor(sqlite: SQLiteProvider) {
-        this.db = sqlite.get();
+    constructor(
+        private readonly orm: MikroORM,
+        @InjectRepository(Thread)
+        private readonly threadRepository: EntityRepository<Thread>) {
     }
 
-    onModuleInit(): void {
-        this.getStatement = this.db.prepare(
-            fs.readFileSync(path.join(__dirname, './queries/get.sql'), 'utf-8'),
-        );
-        this.upsertStatement = this.db.prepare(
-            fs.readFileSync(
-                path.join(__dirname, './queries/upsert.sql'),
-                'utf-8',
-            ),
-        );
 
-        this.logger.debug('Statements prepared.');
-    }
-
-    public get(board: string, threadNumber: number): ThreadEntity | null {
-        try {
-            const result = this.getStatement.get(board, threadNumber);
-
-            if (result == null) return null;
-
-            return {
-                Board: result.board,
-                Number: result.number,
-                Meta: {
-                    ETag: result.etag,
-                    LastModified: result.last_modified,
-                },
-            } as ThreadEntity;
-        } catch (e) {
-            throw e;
-        }
-    }
-
-    public upsert(thread: ThreadEntity): void {
-        this.upsertStatement.run({
-            board: thread.Board,
-            number: thread.Number,
-            etag: thread.Meta.ETag,
-            last_modified: thread.Meta.LastModified?.toISOString(),
+    @UseRequestContext()
+    public async get(board: string, threadNumber: number): Promise<Thread | null> {
+        return this.threadRepository.findOne({
+            board: board,
+            number: threadNumber,
         });
+    }
+
+    @UseRequestContext()
+    public async upsert(thread: Thread): Promise<void> {
+        const existing = await this.get(thread.board, thread.number);
+
+        if (existing) {
+            existing.etag = thread.etag;
+            existing.lastModified = thread.lastModified;
+            return this.threadRepository.persistAndFlush(existing);
+        }
+
+        const dbThread = this.threadRepository.create(thread);
+        return this.threadRepository.persistAndFlush(dbThread);
     }
 }

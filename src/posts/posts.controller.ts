@@ -5,8 +5,8 @@ import { PostsService } from './posts.service';
 import { firstValueFrom } from 'rxjs';
 import { PostsWrapper } from './dtos/post.dto';
 import { ThreadsService } from '../threads/threads.service';
-import { ThreadEntity } from '../threads/entities/thread.entity';
-import { PostEntity } from './entities/post.entity';
+import { Thread } from 'src/threads/entities/thread.entity';
+import { Post } from './entities/post.entity';
 
 @Controller('posts')
 export class PostsController {
@@ -33,45 +33,43 @@ export class PostsController {
             );
 
             // first, update the thread with the latest headers
-            const threadEntity: ThreadEntity = {
-                Board: board,
-                Number: no,
-                Meta: {
-                    LastModified: new Date(response.headers['last-modified']),
-                    ETag: response.headers['etag'],
-                },
+            const threadEntity: Thread = {
+                board: board,
+                number: no,
+                lastModified: new Date(response.headers['last-modified']),
+                etag: response.headers['etag'],
             };
 
-            this.threadsService.upsert(threadEntity);
+            await this.threadsService.upsert(threadEntity);
 
             // now we can save all the posts
             const posts = response.data.posts.map((p) => {
                 return {
-                    Board: board,
-                    Thread: no,
-                    Comment: p.com,
-                    FileExtension: p.ext,
-                    Filename: p.filename,
-                    FileSize: p.fsize,
-                    FileHeight: p.h,
-                    FileHash: p.md5,
-                    PostersName: p.name,
-                    Number: p.no,
-                    UrlSlug: p.semantic_url,
-                    FileUploaded: p.tim != null ? new Date(p.tim) : null, // note that this INCLUDES microtime, so we don't multiply
-                    CreatedAt: new Date(p.time * 1000),
-                    FileWidth: p.w,
-                    Replies: p.replies,
-                    ImageReplies: p.images,
-                    UniqueIps: p.unique_ips,
-                } as PostEntity;
+                    board: board,
+                    thread: no,
+                    comment: p.com,
+                    fileExtension: p.ext,
+                    filename: p.filename,
+                    fileSize: p.fsize,
+                    fileHeight: p.h,
+                    fileHash: p.md5,
+                    postersName: p.name,
+                    number: p.no,
+                    urlSlug: p.semantic_url,
+                    fileUploaded: p.tim != null ? new Date(p.tim) : null, // note that this INCLUDES microtime, so we don't multiply
+                    createdAt: new Date(p.time * 1000),
+                    fileWidth: p.w,
+                    replies: p.replies,
+                    imageReplies: p.images,
+                    uniqueIps: p.unique_ips,
+                } as Post;
             });
 
             this.logger.debug(
                 `Putting batch of ${posts.length} posts for ${board}: ${no}`,
             );
 
-            this.postsService.putBatch(posts);
+            await this.postsService.putBatch(posts);
         } catch (e) {
             this.logger.error(
                 `Unable to get ${board}: ${no} at GET request: ${e}`,

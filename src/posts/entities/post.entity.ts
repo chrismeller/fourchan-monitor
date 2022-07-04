@@ -1,33 +1,55 @@
-export interface PostEntity {
-    Board: string;
-    Thread: number;
-    // com
-    Comment: string;
-    // ext
-    FileExtension: string;
-    Filename: string;
-    // fsize
-    FileSize: number;
-    // h
-    FileHeight: number;
-    // md5
-    FileHash: string;
-    // name
-    PostersName: string;
-    // no
-    Number: number;
-    // semantic_url
-    UrlSlug: string;
-    // tim
-    FileUploaded: Date | null;
-    // time
-    CreatedAt: Date;
-    // w
-    FileWidth: number;
-    // replies
-    Replies: number;
-    // images
-    ImageReplies: number;
-    // unique_ips
-    UniqueIps: number;
+import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+
+@Entity()
+export class Post {
+    @PrimaryKey()
+    board!: string;
+
+    @PrimaryKey()
+    thread!: number;
+
+    @Property({ nullable: true, columnType: 'text' })
+    comment?: string;
+
+    @Property({ nullable: true })
+    fileExtension?: string;
+
+    @Property({ nullable: true })
+    fileName?: string;
+
+    @Property({ nullable: true })
+    fileSize?: number;
+
+    @Property({ nullable: true })
+    fileHeight?: number;
+
+    @Property({ nullable: true })
+    fileHash?: string;
+
+    @Property()
+    postersName: string;
+
+    @PrimaryKey()
+    number: number;
+
+    @Property({ nullable: true })
+    urlSlug?: string;
+
+    @Property({ nullable: true })
+    fileUploaded?: Date;
+
+    @Property()
+    createdAt: Date;
+
+    @Property({ nullable: true })
+    fileWidth?: number;
+
+    @Property({ nullable: true })
+    replies?: number;
+
+    @Property({ nullable: true })
+    imageReplies?: number;
+
+    @Property({ nullable: true })
+    uniqueIps?: number;
 }

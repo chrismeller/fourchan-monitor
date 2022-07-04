@@ -7,6 +7,8 @@ import { HttpModule } from '@nestjs/axios';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { NatsOptions } from '@nestjs/microservices/interfaces/microservice-configuration.interface';
 import { PostsModule } from 'src/posts/posts.module';
+import { Thread } from './entities/thread.entity';
+import { MikroOrmModule } from '@mikro-orm/nestjs';
 
 @Module({
     imports: [
@@ -14,6 +16,7 @@ import { PostsModule } from 'src/posts/posts.module';
         DatabaseModule,
         ConfigModule,
         forwardRef(() => PostsModule),
+        MikroOrmModule.forFeature([Thread]),
     ],
     controllers: [ThreadsController],
     providers: [
