@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { Transport } from '@nestjs/microservices';
+import { ClientProxy, Transport } from '@nestjs/microservices';
 import { ConfigService } from '@nestjs/config';
-import { Logger, LogLevel } from '@nestjs/common';
+import { LogLevel } from '@nestjs/common';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -22,5 +22,8 @@ async function bootstrap() {
     await app.init();
     await app.startAllMicroservices();
     await app.listen(3000);
+
+    const boardsService = app.get<ClientProxy>('BOARDS_SERVICE');
+    boardsService.emit('boards.get', {});
 }
 bootstrap();
