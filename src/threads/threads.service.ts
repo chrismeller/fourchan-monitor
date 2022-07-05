@@ -25,15 +25,17 @@ export class ThreadsService {
 
     @UseRequestContext()
     public async upsert(thread: Thread): Promise<void> {
-        const existing = await this.get(thread.board, thread.number);
+        this.orm.em.transactional(async em => {
+            const existing = await this.get(thread.board, thread.number);
 
-        if (existing) {
-            existing.etag = thread.etag;
-            existing.lastModified = thread.lastModified;
-            return this.threadRepository.persistAndFlush(existing);
-        }
+            if (existing) {
+                existing.etag = thread.etag;
+                existing.lastModified = thread.lastModified;
+                return this.threadRepository.persistAndFlush(existing);
+            }
 
-        const dbThread = this.threadRepository.create(thread);
-        return this.threadRepository.persistAndFlush(dbThread);
+            const dbThread = this.threadRepository.create(thread);
+            return this.threadRepository.persistAndFlush(dbThread);
+        });
     }
 }

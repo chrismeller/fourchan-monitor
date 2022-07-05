@@ -12,14 +12,13 @@ export class PostsService {
         private readonly orm: MikroORM,
         @InjectRepository(Post)
         private readonly postRepository: EntityRepository<Post>,
-        private readonly em: EntityManager,
     ) {}
 
     @UseRequestContext()
     public async putBatch(posts: Post[]): Promise<void> {
-        await this.em.transactional(async em => {
+        await this.orm.em.transactional(async em => {
             for (const post of posts) {
-                const existing = await em.findOne(Post, {
+                const existing = await this.postRepository.findOne({
                     board: post.board,
                     thread: post.thread,
                     number: post.number,
@@ -30,11 +29,11 @@ export class PostsService {
                     existing.imageReplies = post.imageReplies;
                     existing.uniqueIps = post.uniqueIps;
 
-                    em.persist(existing);
+                    this.postRepository.persist(existing);
                 }
                 else {
-                    const dbPost = em.create(Post, post);
-                    em.persist(dbPost);
+                    const dbPost = this.postRepository.create(post);
+                    this.postRepository.persist(dbPost);
                 }
             }
         });
