@@ -26,7 +26,7 @@ export class Post {
     @Property({ nullable: true })
     fileHash?: string;
 
-    @Property()
+    @Property({ nullable: true })
     postersName: string;
 
     @PrimaryKey()
