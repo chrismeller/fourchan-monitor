@@ -8,64 +8,6 @@
       "columns": {
         "board": {
           "name": "board",
-          "type": "varchar(5)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 5,
-          "mappedType": "string"
-        },
-        "number": {
-          "name": "number",
-          "type": "int",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "integer"
-        },
-        "etag": {
-          "name": "etag",
-          "type": "varchar(255)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "mappedType": "string"
-        },
-        "last_modified": {
-          "name": "last_modified",
-          "type": "timestamptz(0)",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        }
-      },
-      "name": "thread",
-      "schema": "public",
-      "indexes": [
-        {
-          "keyName": "thread_pkey",
-          "columnNames": [
-            "board",
-            "number"
-          ],
-          "composite": true,
-          "primary": true,
-          "unique": true
-        }
-      ],
-      "checks": [],
-      "foreignKeys": {}
-    },
-    {
-      "columns": {
-        "board": {
-          "name": "board",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
@@ -151,7 +93,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": false,
+          "nullable": true,
           "mappedType": "string"
         },
         "url_slug": {
@@ -228,6 +170,64 @@
           "columnNames": [
             "board",
             "thread",
+            "number"
+          ],
+          "composite": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "board": {
+          "name": "board",
+          "type": "varchar(5)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 5,
+          "mappedType": "string"
+        },
+        "number": {
+          "name": "number",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "etag": {
+          "name": "etag",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "string"
+        },
+        "last_modified": {
+          "name": "last_modified",
+          "type": "timestamptz(0)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        }
+      },
+      "name": "thread",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "thread_pkey",
+          "columnNames": [
+            "board",
             "number"
           ],
           "composite": true,
