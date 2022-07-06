@@ -17,12 +17,15 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
                 type: 'postgresql',
                 host: configService.get<string>('DATABASE_HOST', 'localhost'),
                 port: configService.get<number>('DATABASE_PORT', 5432),
-                username: configService.get<string>('DATABASE_USERNAME', 'postgres'),
+                user: configService.get<string>('DATABASE_USERNAME', 'postgres'),
                 password: configService.get<string>('DATABASE_PASSWORD', 'password'),
                 dbName: configService.get<string>('DATABASE_DATABASE', 'postgres'),
                 entities: [],
-                synchronize: false,
                 autoLoadEntities: true,
+                migrations: {
+                    path: 'dist/migrations',
+                    pathTs: 'src/migrations',
+                }
             }),
         }),
         BoardsModule,

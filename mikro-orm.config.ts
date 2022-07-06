@@ -7,5 +7,9 @@ export default {
     dbName: 'postgres',
     entities: [
         'src/**/entities/*.entity.ts',
-    ]
+    ],
+    migrations: {
+        path: 'dist/migrations',
+        pathTs: 'src/migrations'
+    }
 };

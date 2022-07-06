@@ -8,17 +8,49 @@ services:
       - 6222
     ports:
       - 8222:8222
+
+  db:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+
+  migrations:
+    build: ./
+    image: ghcr.io/chrismeller/fourchan-monitor:main
+    restart: "no"
+    depends_on:
+      db:
+        condition: service_started
+    command: yarn mikro-orm migration:up
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=password
+      - DATABASE_DATABASE=postgres
+
   monitor:
     build: ./
     image: ghcr.io/chrismeller/fourchan-monitor:main
-    restart: always
+    restart: on-failure
     ports:
       - 3000:3000
-    volumes:
-      - /mnt/4cm-db/db:/home/node/app/db
+    depends_on:
+      nats:
+        condition: service_started
+      migrations:
+        condition: service_completed_successfully
     environment:
       - NATS_URL=nats://nats:4222
       - NODE_ENV=production
-      - SQLITE_LOCATION=/home/node/app/db
       - BOARDS=b,pol,biz,adv,trv,news,int
       - LOG_LEVELS=log,warn,error
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=password
+      - DATABASE_DATABASE=postgres
