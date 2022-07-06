@@ -842,7 +842,7 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@mikro-orm/cli@^5.2.2":
+"@mikro-orm/cli@5.2.2":
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/@mikro-orm/cli/-/cli-5.2.2.tgz#2e5485e37975bc7a5a12af4cf0c1a4387bf8c3b6"
   integrity sha512-IRMcfVFF6edBX2lQsKswMAjw6ILOvwnLT0cMJziknVMuPop/ckaWxlA5r4Uu1BorNtoHf52qB9i3r5YwEe9qAQ==
@@ -854,7 +854,7 @@
     yargonaut "1.1.4"
     yargs "15.4.1"
 
-"@mikro-orm/core@^5.2.2":
+"@mikro-orm/core@5.2.2", "@mikro-orm/core@^5.2.2":
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/@mikro-orm/core/-/core-5.2.2.tgz#4b6220438f9d733b5337502d53ba1e114ab3aab2"
   integrity sha512-n28tu5koNHroESqQasGp5TcCbnHutT4Hng78jYByt2dCd478BkXtWRn/IFOZYxT03vY7shQsepS4HVStJtlSTQ==
@@ -875,7 +875,7 @@
     knex "2.1.0"
     sqlstring "2.3.3"
 
-"@mikro-orm/migrations@^5.2.2":
+"@mikro-orm/migrations@5.2.2":
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/@mikro-orm/migrations/-/migrations-5.2.2.tgz#6209d1f380ece09d142015d293ee5ac91dbe9d2c"
   integrity sha512-DZNyPH2gZ2hXFHThckkHyPelDNfJsifWOoU/Sk24czu9ICQ53q46cnoutK4dZJ9OXGz4rwP2TqY2BaVJIg/JyA==
@@ -885,12 +885,12 @@
     knex "2.1.0"
     umzug "3.1.1"
 
-"@mikro-orm/nestjs@^5.0.2":
+"@mikro-orm/nestjs@5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@mikro-orm/nestjs/-/nestjs-5.0.2.tgz#bff9475b61908ccc610f555863a7ad8be6a08ffa"
   integrity sha512-YqRHOMSn5J2GMc1je4dgKja0hyuf2z73JxzCrfgVlqCzEFhwF7HeuJqVEyLVq1vALck13Kbov/ofCtlGR9LNuw==
 
-"@mikro-orm/postgresql@^5.2.2":
+"@mikro-orm/postgresql@5.2.2":
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/@mikro-orm/postgresql/-/postgresql-5.2.2.tgz#04be02c68a6787a646ce7c36f2abccaf0ae4e087"
   integrity sha512-ehWSpeWnJJ94Z9oCGjSYPWXJTbbyOxjYXoeWxiKVdx4EDEYkQ9lcvZagcRCXlSfh9owCXxuScZKf5UDryriN6Q==
@@ -4158,7 +4158,7 @@ pg-types@^2.1.0:
     postgres-date "~1.0.4"
     postgres-interval "^1.1.0"
 
-pg@8.7.3, pg@^8.7.3:
+pg@8.7.3:
   version "8.7.3"
   resolved "https://registry.yarnpkg.com/pg/-/pg-8.7.3.tgz#8a5bdd664ca4fda4db7997ec634c6e5455b27c44"
   integrity sha512-HPmH4GH4H3AOprDJOazoIcpI49XFsHCe8xlrjHkWiapdbHK+HLtbm/GQzXYAZwmPju/kzKhjaSfMACG+8cgJcw==
