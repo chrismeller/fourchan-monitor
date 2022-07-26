@@ -802,47 +802,47 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@mikro-orm/cli@5.2.3":
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/cli/-/cli-5.2.3.tgz#19c2e2ce19bb78deb7aa175d6197333d3a6d929d"
-  integrity sha512-KWZ0SWGkaGrt4j/lAA7qhfOQQdxTbIcSYMK7AFk92ObRizUC+SZ0c9BKgfRoobmQUa40uD23ihH+pbWLtU6zsw==
+"@mikro-orm/cli@5.2.4":
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/cli/-/cli-5.2.4.tgz#9b4bd5212985ed080d21356c639be96f0ea92536"
+  integrity sha512-eS+MsBWv/a3dxJSGym0XWWxGL4Ll77PQAZUPHRYNLS1h2u/hLC8TzxKDxK+wCBBklRvmgD/YvPs8V73x243u6w==
   dependencies:
-    "@mikro-orm/core" "^5.2.3"
-    "@mikro-orm/knex" "^5.2.3"
+    "@mikro-orm/core" "^5.2.4"
+    "@mikro-orm/knex" "^5.2.4"
     fs-extra "10.1.0"
     tsconfig-paths "4.0.0"
     yargonaut "1.1.4"
     yargs "15.4.1"
 
-"@mikro-orm/core@5.2.3", "@mikro-orm/core@^5.2.3":
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/core/-/core-5.2.3.tgz#ca60e766cbd48b12fe5efd13d4b31c8fda04274a"
-  integrity sha512-GGMvesXljdAK9s+RqiXGzC8NeISVGbvfqGe3Q10Z7Mvxq3jpzs467NOmqOY8bY12+gBN1NOF0sPZwiPTLMVQtg==
+"@mikro-orm/core@5.2.4", "@mikro-orm/core@^5.2.4":
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/core/-/core-5.2.4.tgz#2e8b1a2d9f6b20239a71a81e65bba6265df2e144"
+  integrity sha512-oT8vxF4/AlsfkbS5FFVPa3eotrfOwIursJS+LYAnNz9b6V/1K+DboMkhQqYeUq0yQx+8RRxd3hbGiX235wXuJw==
   dependencies:
     dotenv "16.0.1"
     escaya "0.0.61"
     fs-extra "10.1.0"
     globby "11.0.4"
-    mikro-orm "^5.2.0"
+    mikro-orm "^5.2.4"
     reflect-metadata "0.1.13"
 
-"@mikro-orm/knex@^5.2.3":
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/knex/-/knex-5.2.3.tgz#b2d2bfa4dc6c729bb4b9cfaf235cef892f256070"
-  integrity sha512-LUzUKJK7yX8SCwJrS85qiN4kNd3bVf7gCZ/p0pSad0Rws9KO79jkNhWU+Yd4yscUyDU1UoDB7bYXX5QRbxBGSQ==
+"@mikro-orm/knex@^5.2.4":
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/knex/-/knex-5.2.4.tgz#6e660a3f7e7248b1232e758d161ff22ba0685cb2"
+  integrity sha512-Xkgq4vyQMzVFVnE0F3zrjZINWh2mi9VzipWoOVGSiWsen2z+5NaS0WKkgLWawL9Bu6EDbrJKW/LXsLk3fGXpEA==
   dependencies:
     fs-extra "10.1.0"
-    knex "2.1.0"
+    knex "2.2.0"
     sqlstring "2.3.3"
 
-"@mikro-orm/migrations@5.2.3":
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/migrations/-/migrations-5.2.3.tgz#6d3865217f1985acdff14559b2078cbe14198c1d"
-  integrity sha512-E4wPyE32QRRbG/2g7VosKQY+QHxXRro/LXrsdhyVnUTL/qTmcLzW3KVgoGbkfw7Fosnn2vCBwdMyreSdCnZscA==
+"@mikro-orm/migrations@5.2.4":
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/migrations/-/migrations-5.2.4.tgz#5e1cb2fcd7ce8079b29334b7cf20bf5d03ed2dd0"
+  integrity sha512-Y6Ass/4LNztKKLxl1zJGk5vD4vyy5EXDXa+eRlhmMBnMTdN+p37MOsSRgxiKS7ASj1FuP5qXKRVN1Wh62iuRpg==
   dependencies:
-    "@mikro-orm/knex" "^5.2.3"
+    "@mikro-orm/knex" "^5.2.4"
     fs-extra "10.1.0"
-    knex "2.1.0"
+    knex "2.2.0"
     umzug "3.1.1"
 
 "@mikro-orm/nestjs@5.1.0":
@@ -850,12 +850,12 @@
   resolved "https://registry.yarnpkg.com/@mikro-orm/nestjs/-/nestjs-5.1.0.tgz#e53e080b83830cb1d7be0cdfd2f9585d96d73980"
   integrity sha512-bU0CHVsEFqo9qLTXp7ECiaJev30HUPAMO3HOxtOCWID/fktQq1t1k/yxo4RUDG0oKodmdUKYMesagj4UvS7igQ==
 
-"@mikro-orm/postgresql@5.2.3":
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/postgresql/-/postgresql-5.2.3.tgz#31766accc53814a4593c62fb7c3f79469d3bfb5f"
-  integrity sha512-MSKZ1A4RX+pQBVKMaShnZdsGBHj4HvvH/KcT7PsWdV988MYhoxHQDSkkdPsZc77F1Jk0wH8GIM7/U2eHfua0FQ==
+"@mikro-orm/postgresql@5.2.4":
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/postgresql/-/postgresql-5.2.4.tgz#3ea683bc1db6009c6b65a3ddd3ce48518093195f"
+  integrity sha512-RJCDOzd2KS8ejbCRr5XS8PFlJs19E7SGf0ilOh8by+ssArOj181s3UfJ57nY+xR9V7JRrnLmmjIf4W9bvM8zXQ==
   dependencies:
-    "@mikro-orm/knex" "^5.2.3"
+    "@mikro-orm/knex" "^5.2.4"
     pg "8.7.3"
 
 "@nestjs/axios@0.1.0":
@@ -1974,10 +1974,10 @@ color-name@~1.1.4:
   version "1.1.4"
   resolved "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz"
 
-colorette@2.0.16:
-  version "2.0.16"
-  resolved "https://registry.yarnpkg.com/colorette/-/colorette-2.0.16.tgz#713b9af84fdb000139f04546bd4a93f62a5085da"
-  integrity sha512-hUewv7oMjCp+wkBv5Rm0v87eJhq4woh5rSR+42YSQJKecCqgIqNkZ6lAlQms/BwHPJA5NKMRlpxPRv0n8HQW6g==
+colorette@2.0.19:
+  version "2.0.19"
+  resolved "https://registry.yarnpkg.com/colorette/-/colorette-2.0.19.tgz#cdf044f47ad41a0f4b56b3a0d5b4e6e1a2d5a798"
+  integrity sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==
 
 colors@~1.2.1:
   version "1.2.5"
@@ -3616,12 +3616,12 @@ kleur@^3.0.3:
   version "3.0.3"
   resolved "https://registry.npmjs.org/kleur/-/kleur-3.0.3.tgz"
 
-knex@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/knex/-/knex-2.1.0.tgz#9348aace3a08ff5be26eb1c8e838416ddf1aa216"
-  integrity sha512-vVsnD6UJdSJy55TvCXfFF9syfwyXNxfE9mvr2hJL/4Obciy2EPGoqjDpgRSlMruHuPWDOeYAG25nyrGvU+jJog==
+knex@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/knex/-/knex-2.2.0.tgz#86a3176924d37303b3f9ff7f70087418c263ce7a"
+  integrity sha512-yhm1Qe9Ok0TeXBq3nNHqZYJPrQ4Iw2tq9k/HxjrZ/EWec2ifOjJlkNHr26v8cQrWtk5iG3iwfUazTIWy+VKG5g==
   dependencies:
-    colorette "2.0.16"
+    colorette "2.0.19"
     commander "^9.1.0"
     debug "4.3.4"
     escalade "^3.1.1"
@@ -3749,10 +3749,10 @@ micromatch@^4.0.0, micromatch@^4.0.4:
     braces "^3.0.1"
     picomatch "^2.2.3"
 
-mikro-orm@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/mikro-orm/-/mikro-orm-5.2.0.tgz#5675aab4be63151aa6b5a40f85f81ab7de5a1b23"
-  integrity sha512-t6up4g6PHN2Davm9djB3yGzdhgUGiPsX1JM6pFx7U3Qei1pFcmZtmZa65jthQOpTsMIFTXPSn8isp1NNemwm6w==
+mikro-orm@^5.2.4:
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/mikro-orm/-/mikro-orm-5.2.4.tgz#2413071e5a0c798378c655fb06dd6236e29b4114"
+  integrity sha512-PstCjhPwXAKjnW1f/CJqDvkIfR99X64lkFFnYVktxkhEvc1rXSzKLceY3mKWv6wi1jb/2P5t3VxPnhjM/P5BaA==
 
 mime-db@1.49.0:
   version "1.49.0"
