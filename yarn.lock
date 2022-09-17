@@ -932,10 +932,10 @@
     knex "2.3.0"
     umzug "3.2.1"
 
-"@mikro-orm/nestjs@5.1.1":
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/nestjs/-/nestjs-5.1.1.tgz#ef80f6442f2306fb3b61831297ea1d40260209f8"
-  integrity sha512-jw2sbIFBitaE/io1t5rSNNUzJQuq+i7AJRQzb3mh5g8z1LT9Ssdasbi1YmIftU5E6aH7wsfgXNWCrTSZqJavFA==
+"@mikro-orm/nestjs@5.1.2":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/nestjs/-/nestjs-5.1.2.tgz#1fb47bf4667eba564924f2117e62f42a886bcfbf"
+  integrity sha512-kHvrcZoIsZUwaahWIjuJDII0rfikGucsyZg9UJRDLcDIYm9nm39Qtos9uGgTAySejll/g/XdOM6QirPHtgR8FQ==
 
 "@mikro-orm/postgresql@5.4.2":
   version "5.4.2"
