@@ -34,9 +34,9 @@
     "useTsNode": true
   },
   "dependencies": {
-    "@mikro-orm/core": "5.4.2",
+    "@mikro-orm/core": "5.5.0",
     "@mikro-orm/nestjs": "5.1.2",
-    "@mikro-orm/postgresql": "5.4.2",
+    "@mikro-orm/postgresql": "5.5.0",
     "@nestjs/axios": "0.1.0",
     "@nestjs/common": "9.1.5",
     "@nestjs/config": "2.2.0",
@@ -51,8 +51,8 @@
     "rxjs": "7.5.7"
   },
   "devDependencies": {
-    "@mikro-orm/cli": "5.4.2",
-    "@mikro-orm/migrations": "5.4.2",
+    "@mikro-orm/cli": "5.5.0",
+    "@mikro-orm/migrations": "5.5.0",
     "@nestjs/cli": "9.1.4",
     "@nestjs/schematics": "9.0.3",
     "@nestjs/testing": "9.1.5",
