@@ -4076,10 +4076,10 @@ napi-build-utils@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npmjs.org/napi-build-utils/-/napi-build-utils-1.0.2.tgz"
 
-nats@2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/nats/-/nats-2.9.0.tgz#19df021416dab364a58a9b71ff7b8151e255f6f8"
-  integrity sha512-UBZg0ydCVs4vTp7sFWkmXWmV4oebt6vVRpFUgp+HUMhzjWyvcrBHq0t6hogIHnT5BYilIo0/koDH5FWzhBtSOQ==
+nats@2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/nats/-/nats-2.9.2.tgz#16d1f721da6d123d3e04fb1236b9444ef3082df1"
+  integrity sha512-Ee1HVq/FsQrHSh0hvYJ1PhG+DtAhVG0kCXVvqEj8iL/qUge5IgGrwgXcXCBIlvp26PlWYyoMydMiIefYTD0aNw==
   dependencies:
     nkeys.js "1.0.3"
     web-streams-polyfill "^3.2.1"
