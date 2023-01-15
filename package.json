@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@mikro-orm/core": "5.6.6",
-    "@mikro-orm/nestjs": "5.1.5",
+    "@mikro-orm/nestjs": "5.1.6",
     "@mikro-orm/postgresql": "5.6.6",
     "@nestjs/axios": "0.1.1",
     "@nestjs/common": "9.2.1",
