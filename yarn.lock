@@ -4039,10 +4039,10 @@ napi-build-utils@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npmjs.org/napi-build-utils/-/napi-build-utils-1.0.2.tgz"
 
-nats@2.10.2:
-  version "2.10.2"
-  resolved "https://registry.yarnpkg.com/nats/-/nats-2.10.2.tgz#f60a6658fcc503d9f9064d759f68272daf229ad3"
-  integrity sha512-U+3bjrYT/MqEkWDoHH9ql2rm8qt4s8z49yUjvryBvjEV0GtObTqa+BUpcTK6v2SE5fv09qcP7BcfUK0k0/gB0g==
+nats@2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/nats/-/nats-2.11.0.tgz#d16956e4ad3b416e7f0d44554d6486caf8e77c5a"
+  integrity sha512-Zkjtw4LRT0F9IZwSpLr6O0aLbK0w8rX7kU6PHSdk52YzB0c/pkiXstuGcdUpYdkAYkBS06FHfmRE4BVvCn7Pag==
   dependencies:
     nkeys.js "1.0.4"
     web-streams-polyfill "^3.2.1"
