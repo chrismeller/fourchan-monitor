@@ -4096,13 +4096,12 @@ napi-build-utils@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npmjs.org/napi-build-utils/-/napi-build-utils-1.0.2.tgz"
 
-nats@2.12.0:
-  version "2.12.0"
-  resolved "https://registry.yarnpkg.com/nats/-/nats-2.12.0.tgz#289955bbada71c51bef9bcd7b60cd7520556fa2c"
-  integrity sha512-FSml+7+C/YBnp/sa+eR0RK5FxDc9ZKXO7sp1fRg/FBl+A2utqZlfH+X38azcaD39dT3RMHh/nk2LRnhyUButaQ==
+nats@2.12.1:
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/nats/-/nats-2.12.1.tgz#96733afdd498d813151100b25d86698f11725dc2"
+  integrity sha512-sozm/tpF7KJpjMDfPnlvaED7/+62NrJfKXj2tCE22oi5vpXHT00QccvIuw6cxBrSqD/qw7I06tyjHXoK84Z5kA==
   dependencies:
     nkeys.js "1.0.5"
-    web-streams-polyfill "^3.2.1"
 
 natural-compare-lite@^1.4.0:
   version "1.4.0"
@@ -5417,11 +5416,6 @@ wcwidth@^1.0.1:
   resolved "https://registry.npmjs.org/wcwidth/-/wcwidth-1.0.1.tgz"
   dependencies:
     defaults "^1.0.3"
-
-web-streams-polyfill@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/web-streams-polyfill/-/web-streams-polyfill-3.2.1.tgz#71c2718c52b45fd49dbeee88634b3a60ceab42a6"
-  integrity sha512-e0MO3wdXWKrLbL0DgGnUV7WHVuw9OUvL4hjgnPkIeEvESk74gAITi5G606JtZPp39cd8HA9VQzCIvA49LpPN5Q==
 
 webidl-conversions@^3.0.0:
   version "3.0.1"
