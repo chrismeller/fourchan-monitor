@@ -34,7 +34,7 @@
     "useTsNode": true
   },
   "dependencies": {
-    "@mikro-orm/core": "5.7.13",
+    "@mikro-orm/core": "5.7.14",
     "@mikro-orm/nestjs": "5.2.0",
     "@mikro-orm/postgresql": "5.7.13",
     "@nestjs/axios": "0.1.1",
