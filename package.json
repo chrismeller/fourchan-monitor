@@ -58,7 +58,7 @@
     "@nestjs/testing": "10.3.9",
     "@types/better-sqlite3": "7.6.10",
     "@types/express": "4.17.21",
-    "@types/jest": "29.5.6",
+    "@types/jest": "29.5.12",
     "@types/node": "20.14.8",
     "@types/supertest": "2.0.15",
     "@typescript-eslint/eslint-plugin": "7.13.1",
