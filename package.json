@@ -37,7 +37,7 @@
     "@mikro-orm/core": "5.9.0",
     "@mikro-orm/nestjs": "5.2.2",
     "@mikro-orm/postgresql": "5.9.0",
-    "@nestjs/axios": "0.1.1",
+    "@nestjs/axios": "3.0.2",
     "@nestjs/common": "10.3.9",
     "@nestjs/config": "2.3.4",
     "@nestjs/core": "10.3.9",
