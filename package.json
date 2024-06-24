@@ -53,7 +53,7 @@
   "devDependencies": {
     "@mikro-orm/cli": "6.2.9",
     "@mikro-orm/migrations": "6.2.9",
-    "@nestjs/cli": "9.5.0",
+    "@nestjs/cli": "10.3.2",
     "@nestjs/schematics": "10.1.1",
     "@nestjs/testing": "10.3.9",
     "@types/better-sqlite3": "7.6.6",
