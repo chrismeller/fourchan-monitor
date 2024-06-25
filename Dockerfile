@@ -1,4 +1,4 @@
-FROM node:20-slim AS base
+FROM node:22-slim AS base
 LABEL maintainer="https://github.com/chrismeller"
 
 ENV BOARDS=
@@ -16,7 +16,7 @@ ARG TEMP_INSTALL="curl tar python3 make g++"
 RUN apt-get update && apt-get install -y ${TEMP_INSTALL} && apt-get clean -y && apt-get autoclean -y && apt-get autoremove -y
 
 # update yarn to the latest of the 1.x series
-ENV YARN_VERSION 1.22.18
+ENV YARN_VERSION 1.22.22
 RUN curl -fSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
     && tar -xzf yarn-v$YARN_VERSION.tar.gz -C /opt/ \
     && ln -snf /opt/yarn-v$YARN_VERSION/bin/yarn /usr/local/bin/yarn \
