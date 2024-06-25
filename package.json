@@ -9,7 +9,7 @@
   },
   "repository": "https://github.com/chrismeller/fourchan-monitor.git",
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   },
   "scripts": {
     "clean": "rimraf dist && rimraf node_modules",
