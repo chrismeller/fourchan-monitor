@@ -951,46 +951,46 @@
   resolved "https://registry.yarnpkg.com/@lukeed/csprng/-/csprng-1.0.1.tgz#625e93a0edb2c830e3c52ce2d67b9d53377c6a66"
   integrity sha512-uSvJdwQU5nK+Vdf6zxcWAY2A8r7uqe+gePwLWzJ+fsQehq18pc0I2hJKwypZ2aLM90+Er9u1xn4iLJPZ+xlL4g==
 
-"@mikro-orm/cli@6.3.1":
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/cli/-/cli-6.3.1.tgz#947ef3169080861837271241355d0a6c17695265"
-  integrity sha512-H4VQSHK7VlZs0sPh5HoKJrwVEh0+Kk9v5cRfMUctYsotNvmk+TSP13Fmjx0nUCrEz4FGkiCxnrLJDRUQTzKMeA==
+"@mikro-orm/cli@6.3.2":
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/cli/-/cli-6.3.2.tgz#bbb5d3c9112912e37c1efb713890bce1b1eefba9"
+  integrity sha512-4XJ8TiA0JAQS5AHF7muz+RrMKDdXCBg0x8E7mwgH/Bk2FBxK178NVtk6ov/CEBuLja8MiBgzGG3jh65sV0wUFQ==
   dependencies:
     "@jercle/yargonaut" "1.1.5"
-    "@mikro-orm/core" "6.3.1"
-    "@mikro-orm/knex" "6.3.1"
+    "@mikro-orm/core" "6.3.2"
+    "@mikro-orm/knex" "6.3.2"
     fs-extra "11.2.0"
     tsconfig-paths "4.2.0"
     yargs "17.7.2"
 
-"@mikro-orm/core@6.3.1":
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/core/-/core-6.3.1.tgz#5758616e709b92d463aab2ee35ec706bc44a7a69"
-  integrity sha512-c/Qu8y7xe41x7O/ikI1cL1kdEwN8StAbICvvxvxnHgQdi/rOsu1HAifmUiIGM/tmH5u2busX+gfyCH17gH43uw==
+"@mikro-orm/core@6.3.2":
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/core/-/core-6.3.2.tgz#235deabcce0c1a413df42003b17544bc1d547a12"
+  integrity sha512-WgTO0InqjMW8nho4n/bk/fQNU1HYn6w4RtgYZ+e9wlFmnrEBj2pXTS68IV9DmUNYHAVNVVZl7/EcMlYaVzRkVg==
   dependencies:
     dataloader "2.2.2"
     dotenv "16.4.5"
     esprima "4.0.1"
     fs-extra "11.2.0"
     globby "11.1.0"
-    mikro-orm "6.3.1"
+    mikro-orm "6.3.2"
     reflect-metadata "0.2.2"
 
-"@mikro-orm/knex@6.3.1":
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/knex/-/knex-6.3.1.tgz#fdc0c713a4de9fd52dfdefdf8686966fa519c956"
-  integrity sha512-mEEGmFx7Plv5AZG/L7b7qwWuHUXcz1nRYcvhDsAAM8QnFveXzzvDhYTRF2SHLfvrEp1JY23CA0oBwD8mbtkecg==
+"@mikro-orm/knex@6.3.2":
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/knex/-/knex-6.3.2.tgz#a2cd57676f4085978872d1c51fc9c3c34a6d5df3"
+  integrity sha512-lESmITBJsTD3KIRFwQZnKaz2Va4DXcqiZoYYC4S32M+9TArxC8try2J7gmZWuQzGo/HszgBqfPFOxLyUF7ddiQ==
   dependencies:
     fs-extra "11.2.0"
     knex "3.1.0"
     sqlstring "2.3.3"
 
-"@mikro-orm/migrations@6.3.1":
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/migrations/-/migrations-6.3.1.tgz#a6bd79b60f1e9b7c8dd82f00838f3bdfadde2128"
-  integrity sha512-e89xYNYdrYkaSDOkB6oE2XnChT0MJkcSBYO/oQKkqc4j3jgCJnccmnpFn04aFYremmn7X11ZXZb1ySbw6seDIQ==
+"@mikro-orm/migrations@6.3.2":
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/migrations/-/migrations-6.3.2.tgz#9fd2fde2f983f09968ef3ba265356f5397c6730a"
+  integrity sha512-nbzH6ZblpD04LTRJPgjCXhIeA2yLZshutrJnN06jU7iRPYkm0A/1VSCg0POaApgzyz+h+WxzK77FhUaCwJn9zg==
   dependencies:
-    "@mikro-orm/knex" "6.3.1"
+    "@mikro-orm/knex" "6.3.2"
     fs-extra "11.2.0"
     umzug "3.8.1"
 
@@ -999,12 +999,12 @@
   resolved "https://registry.yarnpkg.com/@mikro-orm/nestjs/-/nestjs-6.0.2.tgz#0c8d57db1b958b1d7f06a501653a30d88467d72b"
   integrity sha512-3bUBnJ0HwwIjsNPb0n7dfTWayqA5iSLHv/zM9juyBADSpJB2oBAd96QlUqDvNi/RckSg0m+ifLVT0Uw8e0+POg==
 
-"@mikro-orm/postgresql@6.3.1":
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/postgresql/-/postgresql-6.3.1.tgz#99928d5704b39f0f8b2108dfde9ba8c5cb690338"
-  integrity sha512-K5YxXjHG5rAzJmLKQvwSURgAG1grWJEJkghDA64rPiQc3tHBKFqL7AOWQ94sWjczLNEFilDKuJ4vaRzfsVYw0w==
+"@mikro-orm/postgresql@6.3.2":
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/postgresql/-/postgresql-6.3.2.tgz#eb1ef651f39c9814a56acc26eaa2da0598699e48"
+  integrity sha512-GX1PFNKHN3RmbE+ypW5tXgcLmJ6ClfdAO+DFmRx6tuJ40vexRp2xaw8j+4xd2yKF0f+gS0K9HExr9FdFB53tng==
   dependencies:
-    "@mikro-orm/knex" "6.3.1"
+    "@mikro-orm/knex" "6.3.2"
     pg "8.12.0"
     postgres-array "3.0.2"
     postgres-date "2.1.0"
@@ -4140,10 +4140,10 @@ micromatch@^4.0.0, micromatch@^4.0.4:
     braces "^3.0.1"
     picomatch "^2.2.3"
 
-mikro-orm@6.3.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/mikro-orm/-/mikro-orm-6.3.1.tgz#c5a6e0b6fb29d64e2eac265f96fc3489cb142afc"
-  integrity sha512-NfCHCEZE4i99rBIBFZInFyPxpTZiQnMZTDIHrRSNdyYBoh9+EpuHL7xGPm40bwOrPmEFj6Nl+JaVEu3dc500ag==
+mikro-orm@6.3.2:
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/mikro-orm/-/mikro-orm-6.3.2.tgz#e6ef07eaf0ac7f97cf1fae4d2b9be1a46e622502"
+  integrity sha512-5DcGDCasuW93dmPbFu+kd8sNO7MTcicYMW9RQH1rK/D77mKPxOmgsS14RAX+HuftbqWOBQXcTNZ+s9WUQ9UX4g==
 
 mime-db@1.49.0:
   version "1.49.0"
