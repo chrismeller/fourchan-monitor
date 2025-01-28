@@ -1027,10 +1027,10 @@
     fs-extra "11.3.0"
     umzug "3.8.2"
 
-"@mikro-orm/nestjs@6.0.2":
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/@mikro-orm/nestjs/-/nestjs-6.0.2.tgz#0c8d57db1b958b1d7f06a501653a30d88467d72b"
-  integrity sha512-3bUBnJ0HwwIjsNPb0n7dfTWayqA5iSLHv/zM9juyBADSpJB2oBAd96QlUqDvNi/RckSg0m+ifLVT0Uw8e0+POg==
+"@mikro-orm/nestjs@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@mikro-orm/nestjs/-/nestjs-6.1.0.tgz#b377bf810c2c1d5e1ea61c4b607f008a576c45ff"
+  integrity sha512-nuCjYSzEfcvFRjXAdVoKoCLw2TeZi1Ig3j1thTo1bo7Yjvko3lGchOBlYjx/vnC4HDQaAdAhRuAa6ceGZVMR8w==
 
 "@mikro-orm/postgresql@6.4.4":
   version "6.4.4"
