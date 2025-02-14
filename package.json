@@ -44,7 +44,7 @@
     "@nestjs/microservices": "10.4.15",
     "@nestjs/platform-express": "10.4.15",
     "better-sqlite3": "11.8.1",
-    "nats": "2.29.1",
+    "nats": "2.29.2",
     "pg": "8.13.3",
     "reflect-metadata": "0.2.2",
     "rimraf": "5.0.10",
