@@ -1078,10 +1078,10 @@
     webpack "5.97.1"
     webpack-node-externals "3.0.0"
 
-"@nestjs/common@10.4.17":
-  version "10.4.17"
-  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-10.4.17.tgz#fa278d4b2a41a9180023d42b6899bfd290a34eeb"
-  integrity sha512-NKzPA4Tb35XjlxizsT8KZb3CCX8tNKj5EnsXsTl/gZX//uAWccBsqB8BjU69x/u4/kQ0106/Kt6PP+yrHAez0w==
+"@nestjs/common@10.4.18":
+  version "10.4.18"
+  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-10.4.18.tgz#e77328218812ad520f3d9ab6e4f294f5cd59c9ab"
+  integrity sha512-9SrTth6YJJ9CjVnekw9WP8kaiwh+tSgR0KIrPYV/aWgF9D0175uDJUglzbiCfUbkPyHN8jcKXUXd3EVPDY6BNA==
   dependencies:
     uid "2.0.2"
     file-type "20.4.1"
@@ -1097,10 +1097,10 @@
     dotenv-expand "10.0.0"
     lodash "4.17.21"
 
-"@nestjs/core@10.4.17":
-  version "10.4.17"
-  resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-10.4.17.tgz#6bddf1f25c4883023224e07c8ed133af092833d0"
-  integrity sha512-Tk4J5aS082NUYrsJEDLvGdU+kRnHAMdOvsA4j62fP5THO6fN6vqv6jWHfydhCiPGUCJWLT6m+mNIhETMhMAs+Q==
+"@nestjs/core@10.4.18":
+  version "10.4.18"
+  resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-10.4.18.tgz#b665263d013bd756960e8f1f4fb20c4dd0b91a03"
+  integrity sha512-+cs96rnpHIfkn9o0DLZFKuE1RZ3FFQkpkzz+DY2U8C3Wn3VX5fQaO4YuabweLIhUKTLr9DMxPycA5qk5rAPFBw==
   dependencies:
     uid "2.0.2"
     "@nuxtjs/opencollective" "0.3.2"
@@ -1109,23 +1109,23 @@
     path-to-regexp "3.3.0"
     tslib "2.8.1"
 
-"@nestjs/microservices@10.4.17":
-  version "10.4.17"
-  resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-10.4.17.tgz#764f08501190038343113e459e1aa025f37d7471"
-  integrity sha512-12r7zFvh8q+u2Xi9CT6CjsPsBeJsM1u9Bk2ZSaign6W6lfqsIKtqC8dNxuggyCna8MftNo8uW3mhUG+9bW/tnw==
+"@nestjs/microservices@10.4.18":
+  version "10.4.18"
+  resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-10.4.18.tgz#8a376157f5269f77777747a396c23ed581180d1c"
+  integrity sha512-DKE3GSkA0aAubBVurmlQGWBnUE1TzekT1pCof8/k6t9RPFyr3jf/o9tFDKi7x5icGrq+DwDvD75fRR6pnvBccw==
   dependencies:
     iterare "1.2.1"
     tslib "2.8.1"
 
-"@nestjs/platform-express@10.4.17":
-  version "10.4.17"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-10.4.17.tgz#0f4624af53ff7f639320304f25938975d5622fe0"
-  integrity sha512-ovn4Wxney3QGBrqNPv0QLcCuH5QoAi6pb/GNWAz6B/NmBjZbs9/zl4a2beGDA2SaYre9w43YbfmHTm17PneP9w==
+"@nestjs/platform-express@10.4.18":
+  version "10.4.18"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-10.4.18.tgz#843d65dfc15583375bfa66ab1f8e013c2c57bb12"
+  integrity sha512-v+W+Pu5NOVK/bSG5A5mOnXyoVwN5mJUe4o0j0UJ9Ig9JMmjVxg+Zw2ydTfpOQ+R82lRYWJUjjv3dvqKaFW2z7w==
   dependencies:
     body-parser "1.20.3"
     cors "2.8.5"
     express "4.21.2"
-    multer "1.4.4-lts.1"
+    multer "2.0.0"
     tslib "2.8.1"
 
 "@nestjs/schematics@10.2.3":
@@ -1150,10 +1150,10 @@
     jsonc-parser "3.2.1"
     pluralize "8.0.0"
 
-"@nestjs/testing@10.4.17":
-  version "10.4.17"
-  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-10.4.17.tgz#f3a19309768261a380ac96ecddcef81231019e70"
-  integrity sha512-TV1fqSNqqXgp0W57jCAfhJRfsvpH+krd4RtYSa7Pu+aU9uB+xcMBn5M62G02aMU41DURVZXKNVbHsZb6meZqBQ==
+"@nestjs/testing@10.4.18":
+  version "10.4.18"
+  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-10.4.18.tgz#cfcb9ae2e339ca64bc8ca8b6b1b5f4e36627be9b"
+  integrity sha512-oTeGjnh1qeSZMFqze1Rz5lEtAOBRDApulWDoLYSyzh+8/jFflhCYAGeOHncItkGq9wBRe1R1Ct2GyRFdTmpcjg==
   dependencies:
     tslib "2.8.1"
 
@@ -4385,10 +4385,10 @@ ms@2.1.3, ms@^2.1.3:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-multer@1.4.4-lts.1:
-  version "1.4.4-lts.1"
-  resolved "https://registry.yarnpkg.com/multer/-/multer-1.4.4-lts.1.tgz#24100f701a4611211cfae94ae16ea39bb314e04d"
-  integrity sha512-WeSGziVj6+Z2/MwQo3GvqzgR+9Uc+qt8SwHKh3gvNPiISKfsMfG4SvCOFYlxxgkXt7yIV2i1yczehm0EOKIxIg==
+multer@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/multer/-/multer-2.0.0.tgz#47076aa0f7c2c2fd273715e767c6962bf7f94326"
+  integrity sha512-bS8rPZurbAuHGAnApbM9d4h1wSoYqrOqkE+6a64KLMK9yWU7gJXBDDVklKQ3TPi9DRb85cRs6yXaC0+cjxRtRg==
   dependencies:
     append-field "^1.0.0"
     busboy "^1.0.0"
