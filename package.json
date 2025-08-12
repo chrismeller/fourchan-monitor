@@ -42,7 +42,7 @@
     "@nestjs/config": "3.3.0",
     "@nestjs/core": "10.4.19",
     "@nestjs/microservices": "10.4.19",
-    "@nestjs/platform-express": "10.4.19",
+    "@nestjs/platform-express": "10.4.20",
     "better-sqlite3": "11.10.0",
     "nats": "2.29.3",
     "pg": "8.16.3",
