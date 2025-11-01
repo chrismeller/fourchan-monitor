@@ -27,6 +27,8 @@ export class SQLiteProvider implements OnModuleInit {
         // don't let sqlite automatically handle vacuuming, it can result in huge transactions
         // that can use up all our available disk space and break litespeed backups
         // instead, we will manually run PRAGMA incremental_vacuum(1000000) to limit size to 1GB
+        // NOTE: If changing auto_vacuum mode on an existing database, you must run VACUUM once after this change
+        // for the new auto_vacuum setting to take effect. Otherwise, the previous mode will remain active.
         this.db.pragma('auto_vacuum = NONE');
     }
 
