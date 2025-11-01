@@ -15,10 +15,21 @@ export class SQLiteProvider implements OnModuleInit {
         );
 
         this.db.pragma('journal_mode = WAL');
+        // don't wait for a full disk sync, instead litestream can handle only normal
+        // syncs. used by browsers, so it must be safe.
         this.db.pragma('synchronous = NORMAL');
-        this.db.pragma('temp_store= memory');
-        this.db.pragma('mmap_size = 30000000000');
-        this.db.pragma('auto_vacuum = FULL');
+        this.db.pragma('temp_store = memory');
+        // increase the cache size to about 64MB (the default is closer to 2)
+        this.db.pragma('cache_size = -64000');
+        // wait for 5 seconds to get a lock. the default is 0, which returns
+        // SQLITE_BUSY immediately
+        this.db.pragma('busy_timeout = 5000');
+        // don't let sqlite automatically handle vacuuming, it can result in huge transactions
+        // that can use up all our available disk space and break litestream backups
+        // instead, we will manually run PRAGMA incremental_vacuum(1000000) to limit size to 1GB
+        // NOTE: If changing auto_vacuum mode on an existing database, you must run VACUUM once after this change
+        // for the new auto_vacuum setting to take effect. Otherwise, the previous mode will remain active.
+        this.db.pragma('auto_vacuum = NONE');
     }
 
     get(): SQLite.Database {
